@@ -1,32 +1,41 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view />
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import url("https://fonts.googleapis.com/css2?family=Copse&family=Montserrat&display=swap");
+@import "@/assets/_reset.scss";
+@import "@/assets/_variables.scss";
+
+body {
+  background-color: $backgroundColor;
+  font-size: 0.9em;
+  font-family: $primaryFont;
 }
 
-#nav {
-  padding: 30px;
+::-moz-selection {
+  background: #79ad8067;
+}
+::selection {
+  background: #79ad8067;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+.container {
+  max-width: 1400px;
+  width: 100%;
+  padding: 30px 10px 30px 10px;
+  margin: auto;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+.white-bg {
+  background: #fff;
+}
+
+@media (min-width: 560px) {
+  .container {
+    width: 90%;
   }
 }
 </style>
