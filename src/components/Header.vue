@@ -5,9 +5,6 @@
   </div>
 </template>
 
-<script>
-</script>
-
 <style lang="scss" scoped>
 @import "@/assets/_variables.scss";
 

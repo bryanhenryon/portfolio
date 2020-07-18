@@ -1,6 +1,6 @@
 <template>
   <footer>
-    &copy; {{ copyright }} Bryan Henryon &mdash;
+    &copy; {{ getCopyright }} Bryan Henryon &mdash;
     <a
       href="https://www.bryanhenryon.fr"
       target="_blank"
@@ -10,11 +10,11 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  data() {
-    return {
-      copyright: new Date().getFullYear()
-    };
+  computed: {
+    ...mapGetters(["getCopyright"])
   }
 };
 </script>

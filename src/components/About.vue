@@ -20,7 +20,7 @@
         <div id="about-skills">
           <h4>Connaissances techniques</h4>
           <ul>
-            <li v-for="(skill,index) of skills" :key="index">{{ skill }}</li>
+            <li v-for="(skill,index) of getSkills" :key="index">{{ skill }}</li>
           </ul>
         </div>
       </div>
@@ -29,21 +29,11 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  data() {
-    return {
-      skills: [
-        "HTML5",
-        "CSS3",
-        "SCSS",
-        "Bootstrap",
-        "JavaScript",
-        "Vue.js",
-        "PHP",
-        "MySQL",
-        "Symfony"
-      ]
-    };
+  computed: {
+    ...mapGetters(["getSkills"])
   }
 };
 </script>

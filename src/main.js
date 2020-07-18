@@ -1,14 +1,16 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
+import store from "./store";
 import Vuelidate from "vuelidate";
 import axios from "axios";
-export const EventBus = new Vue();
+
 Vue.use(Vuelidate, axios);
 
 Vue.config.productionTip = false;
 
 new Vue({
+  store,
   router,
   render: (h) => h(App),
 }).$mount("#app");

@@ -3,7 +3,7 @@
     <ul id="navbar-ul">
       <li @click="prev()">
         <h3>
-          <router-link :to="`/projet/${id}`">projet prec.</router-link>
+          <router-link :to="`/projet/${getId}`">projet prec.</router-link>
         </h3>
       </li>
       <li>
@@ -19,7 +19,7 @@
       </li>
       <li @click="next()">
         <h3>
-          <router-link :to="`/projet/${id}`">projet suiv.</router-link>
+          <router-link :to="`/projet/${getId}`">projet suiv.</router-link>
         </h3>
       </li>
     </ul>
@@ -27,34 +27,19 @@
 </template>
 
 <script>
-import { EventBus } from "@/main.js";
+import { mapGetters } from "vuex";
+
 export default {
-  data() {
-    return {
-      id: this.$route.params.id,
-      currentImage2: this.currentImage
-    };
+  computed: {
+    ...mapGetters(["getProjects", "getId", "getCurrentImage"])
   },
-  props: ["projects", "currentImage"],
   methods: {
     prev() {
-      if (this.id <= 1) {
-        this.id = this.projects.length + 1;
-      }
-      this.id--;
-      this.currentImage2 = 1;
-      EventBus.$emit("currentProject", this.id);
-      EventBus.$emit("currentImage", this.currentImage2);
+      this.$store.commit("previousProject");
     },
 
     next() {
-      if (this.id >= this.projects.length) {
-        this.id = 0;
-      }
-      this.id++;
-      this.currentImage2 = 1;
-      EventBus.$emit("currentProject", this.id);
-      EventBus.$emit("currentImage", this.currentImage2);
+      this.$store.commit("nextProject");
     },
     scrollToTop() {
       window.scrollTo(0, 0);
