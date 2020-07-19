@@ -14,7 +14,7 @@ export default new Vuex.Store({
       "Vue.js",
       "PHP",
       "MySQL",
-      "Symfony",
+      "Symfony"
     ],
     projects: [
       {
@@ -25,7 +25,7 @@ export default new Vuex.Store({
           "last-life-2.png",
           "last-life-3.png",
           "last-life-4.png",
-          "last-life-5.png",
+          "last-life-5.png"
         ],
         name: "Last Life",
         description: `
@@ -41,11 +41,11 @@ export default new Vuex.Store({
           "Bootstrap",
           "JavaScript",
           "Symfony",
-          "MySQL",
+          "MySQL"
         ],
         year_of_creation: 2019,
         demo: "https://last-life.bryanhenryon.fr/",
-        code: "https://github.com/bryanhenryon/last-life",
+        code: "https://github.com/bryanhenryon/last-life"
       },
       {
         id: 2,
@@ -59,7 +59,7 @@ export default new Vuex.Store({
         used_technologies: ["HTML5", "CSS3", "JavaScript"],
         year_of_creation: 2020,
         demo: "https://les-pays-du-monde.bryanhenryon.fr/",
-        code: "https://github.com/bryanhenryon/les-pays-du-monde",
+        code: "https://github.com/bryanhenryon/les-pays-du-monde"
       },
       {
         id: 3,
@@ -73,7 +73,7 @@ export default new Vuex.Store({
         used_technologies: ["HTML5", "CSS3", "JavaScript"],
         year_of_creation: 2020,
         demo: "https://github-finder.bryanhenryon.fr/",
-        code: "https://github.com/bryanhenryon/github-finder",
+        code: "https://github.com/bryanhenryon/github-finder"
       },
       {
         id: 4,
@@ -86,7 +86,7 @@ export default new Vuex.Store({
         used_technologies: ["HTML5", "CSS3", "JavaScript"],
         year_of_creation: 2020,
         demo: "https://ma-to-do-list.bryanhenryon.fr/",
-        code: "https://github.com/bryanhenryon/ma-to-do-list",
+        code: "https://github.com/bryanhenryon/ma-to-do-list"
       },
       {
         id: 5,
@@ -95,7 +95,7 @@ export default new Vuex.Store({
           "chasseur-de-monstres.png",
           "chasseur-de-monstres-2.png",
           "chasseur-de-monstres-3.png",
-          "chasseur-de-monstres-4.png",
+          "chasseur-de-monstres-4.png"
         ],
         name: "Chasseur de Monstres",
         description: `<p>Portant un grand intérêt aux jeux vidéo depuis mon enfance, ce projet est né de ma volonté de développer un petit jeu en JavaScript. C'est également mon premier projet réalisé avec Vue.js, idéal pour concevoir les bases du framework.</p>
@@ -106,7 +106,7 @@ export default new Vuex.Store({
         used_technologies: ["HTML5", "CSS3", "Foundation", "Vue.js"],
         year_of_creation: 2020,
         demo: "https://chasseur-de-monstres.bryanhenryon.fr/",
-        code: "https://github.com/bryanhenryon/chasseur-de-monstres",
+        code: "https://github.com/bryanhenryon/chasseur-de-monstres"
       },
       {
         id: 6,
@@ -115,7 +115,7 @@ export default new Vuex.Store({
           "portfolio.png",
           "portfolio-2.png",
           "portfolio-3.png",
-          "portfolio-4.png",
+          "portfolio-4.png"
         ],
         name: "Mon Portfolio",
         description: `Mon portfolio, tout simplement. Réalisé afin de centraliser mes travaux et les rendre accessibles publiquement.`,
@@ -129,57 +129,50 @@ export default new Vuex.Store({
           "Vue Router",
           "Vuex",
           "Vuelidate",
-          "Axios",
+          "Axios"
         ],
         year_of_creation: 2020,
         demo: "https://www.bryanhenryon.fr",
-        code: "https://github.com/bryanhenryon/portfolio",
-      },
+        code: "https://github.com/bryanhenryon/portfolio"
+      }
     ],
     copyright: null,
     id: null,
-    currentImage: 1,
+    currentImage: 1
   },
   getters: {
-    getSkills: (state) => state.skills,
-    getCopyright: (state) => (state.copyright = new Date().getFullYear()),
-    getProjects: (state) => state.projects,
-    getId: (state) => state.id,
-    getCurrentImage: (state) => state.currentImage,
+    getSkills: state => state.skills,
+    getCopyright: state => (state.copyright = new Date().getFullYear()),
+    getProjects: state => state.projects,
+    getId: state => state.id,
+    getCurrentImage: state => state.currentImage
   },
   mutations: {
     setId: (state, payload) => (state.id = payload),
-    previousImage: (state) => {
-      if (state.currentImage <= 1) {
-        state.currentImage = state.projects[state.id - 1].image.length;
-      }
+    previousImage: state => {
+      if (state.currentImage <= 1) state.currentImage = state.projects[state.id - 1].image.length;
       state.currentImage--;
     },
-    nextImage: (state) => {
-      if (state.currentImage >= state.projects[state.id - 1].image.length - 1) {
-        state.currentImage = 0;
-      }
+    nextImage: state => {
+      if (state.currentImage >= state.projects[state.id - 1].image.length - 1) state.currentImage = 0;
       state.currentImage++;
     },
-    previousProject: (state) => {
-      if (state.id <= 1) {
-        state.id = state.projects.length + 1;
-      }
+    previousProject: state => {
+      if (state.id <= 1) state.id = state.projects.length + 1; 
       state.id--;
       state.currentImage = 1;
     },
-    nextProject: (state) => {
-      if (state.id >= state.projects.length) {
-        state.id = 0;
-      }
+    nextProject: state => {
+      if (state.id >= state.projects.length) state.id = 0;
       state.id++;
       state.currentImage = 1;
-    },
+    }
   },
   actions: {
-    setId: ({ commit }, payload) => {
-      commit("setId", payload);
-    },
-  },
-  modules: {},
+    setId: ({ commit }, payload) => commit("setId", payload),
+    previousImage: ({ commit }) => commit("previousImage"),
+    nextImage: ({ commit }) => commit("nextImage"),
+    previousProject: ({ commit }) => commit("previousProject"),
+    nextProject: ({ commit }) => commit("nextProject")
+  }
 });
