@@ -1,20 +1,25 @@
 <template>
   <div id="project">
     <app-navbar></app-navbar>
-    <h3 id="project-name">projet : {{ getProjects[getId -1].name.toLowerCase() }}</h3>
+    <h3 id="project-name">
+      projet : {{ getProjects[getId - 1].name.toLowerCase() }}
+    </h3>
     <div class="card">
       <div id="project-image">
         <img
           @click="showModal()"
-          :src="'/img/' + getProjects[getId -1].image[getCurrentImage]"
-          :alt="getProjects[getId -1].name"
+          :src="'/img/' + getProjects[getId - 1].image[getCurrentImage]"
+          :alt="getProjects[getId - 1].name"
         />
       </div>
       <div id="project-image-pagination">
         <button @click="prev()">
           <i class="fas fa-chevron-left"></i>
         </button>
-        <span>{{ getCurrentImage }} / {{ getProjects[getId -1].image.length - 1}}</span>
+        <span>
+          {{ getCurrentImage }} /
+          {{ getProjects[getId - 1].image.length - 1 }}
+        </span>
         <button @click="next()">
           <i class="fas fa-chevron-right"></i>
         </button>
@@ -22,41 +27,57 @@
       <div class="card-action">
         <ul>
           <li>
-            <a :href="getProjects[getId -1].demo" target="_blank" rel="noopener">demo</a>
+            <a
+              :href="getProjects[getId - 1].demo"
+              target="_blank"
+              rel="noopener"
+              >demo</a
+            >
           </li>
           <li>
-            <a :href="getProjects[getId -1].code" target="_blank" rel="noopener">code</a>
+            <a
+              :href="getProjects[getId - 1].code"
+              target="_blank"
+              rel="noopener"
+              >code</a
+            >
           </li>
         </ul>
       </div>
       <div id="about-project">
         <h4>A propos du projet</h4>
-        <div id="description" v-html="getProjects[getId -1].description"></div>
+        <div id="description" v-html="getProjects[getId - 1].description"></div>
       </div>
 
       <div id="technologies">
         <h4>Technologies</h4>
         <ul>
           <li
-            v-for="(technology,index) of getProjects[getId -1].used_technologies"
+            v-for="(technology, index) of getProjects[getId - 1]
+              .used_technologies"
             :key="index"
-          >{{ technology }}</li>
+          >
+            {{ technology }}
+          </li>
         </ul>
       </div>
 
       <div id="year">
         <h4>Année</h4>
-        <p>{{ getProjects[getId -1].year_of_creation }}</p>
+        <p>{{ getProjects[getId - 1].year_of_creation }}</p>
       </div>
     </div>
     <div @click="closeModal($event)" class="modal">
       <div class="full-img">
-        <img :src="'/img/' + getProjects[getId -1].image[getCurrentImage]" />
+        <img :src="'/img/' + getProjects[getId - 1].image[getCurrentImage]" />
         <div class="modal-pagination">
           <button @click="prev()">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <span>{{ getCurrentImage }} / {{ getProjects[getId -1].image.length - 1}}</span>
+          <span>
+            {{ getCurrentImage }} /
+            {{ getProjects[getId - 1].image.length - 1 }}
+          </span>
           <button @click="next()">
             <i class="fas fa-chevron-right"></i>
           </button>
@@ -79,10 +100,10 @@ export default {
   },
   methods: {
     prev() {
-      this.$store.commit("previousImage");
+      this.$store.dispatch("previousImage");
     },
     next() {
-      this.$store.commit("nextImage");
+      this.$store.dispatch("nextImage");
     },
 
     showModal() {

@@ -35,11 +35,11 @@ export default {
   },
   methods: {
     prev() {
-      this.$store.commit("previousProject");
+      this.$store.dispatch("previousProject");
     },
 
     next() {
-      this.$store.commit("nextProject");
+      this.$store.dispatch("nextProject");
     },
     scrollToTop() {
       window.scrollTo(0, 0);
