@@ -64,6 +64,26 @@ export default new Vuex.Store({
       },
       {
         id: 3,
+        image: ["test.jpg", "elochat.png", "elochat-2.png"],
+        name: "Elochat",
+        description: `...`,
+        overview: "...",
+        used_technologies: [
+          "HTML5",
+          "CSS3",
+          "SCSS",
+          "JavaScript",
+          "Node.js",
+          "Express",
+          "MongoDB",
+          "Socket.IO",
+        ],
+        year_of_creation: 2020,
+        demo: "https://elochat.herokuapp.com/",
+        code: "https://github.com/bryanhenryon/elochat",
+      },
+      {
+        id: 4,
         image: ["test.jpg", "github-finder.png"],
         name: "GitHub Finder",
         description: `<p>J'ai réalisé ce projet afin de m'entrainer à effectuer des requêtes HTTP asynchrones en JavaScript, autrement dit, des appels Ajax. Il s'agit de ma toute première tentative. Derrière le rideau, à chaque caractère entré dans la barre de recherche, une requête est envoyée au serveur de GitHub qui me renvoie les informations de l'utilisateur correspondant.</p>
@@ -77,7 +97,7 @@ export default new Vuex.Store({
         code: "https://github.com/bryanhenryon/github-finder",
       },
       {
-        id: 4,
+        id: 5,
         name: "Ma To-do List",
         image: ["test.jpg", "ma-to-do-list.png", "ma-to-do-list-2.png"],
         description:
@@ -90,7 +110,7 @@ export default new Vuex.Store({
         code: "https://github.com/bryanhenryon/ma-to-do-list",
       },
       {
-        id: 5,
+        id: 6,
         image: [
           "test.jpg",
           "chasseur-de-monstres.png",
@@ -108,33 +128,6 @@ export default new Vuex.Store({
         year_of_creation: 2020,
         demo: "https://chasseur-de-monstres.bryanhenryon.fr/",
         code: "https://github.com/bryanhenryon/chasseur-de-monstres",
-      },
-      {
-        id: 6,
-        image: [
-          "test.jpg",
-          "portfolio.png",
-          "portfolio-2.png",
-          "portfolio-3.png",
-          "portfolio-4.png",
-        ],
-        name: "Mon Portfolio",
-        description: `Mon portfolio, tout simplement. Réalisé afin de centraliser mes travaux et les rendre accessibles publiquement.`,
-        overview:
-          "Le projet sur lequel vous vous trouvez actuellement, réalisé avec Vue.js",
-        used_technologies: [
-          "HTML5",
-          "CSS3",
-          "JavaScript",
-          "Vue.js",
-          "Vue Router",
-          "Vuex",
-          "Vuelidate",
-          "Axios",
-        ],
-        year_of_creation: 2020,
-        demo: "https://www.bryanhenryon.fr",
-        code: "https://github.com/bryanhenryon/portfolio",
       },
     ],
     copyright: null,
@@ -170,6 +163,9 @@ export default new Vuex.Store({
       state.id++;
       state.currentImage = 1;
     },
+    backToHomepage: (state) => {
+      state.currentImage = 1;
+    },
   },
   actions: {
     setId: ({ commit }, payload) => commit("setId", payload),
@@ -177,5 +173,6 @@ export default new Vuex.Store({
     nextImage: ({ commit }) => commit("nextImage"),
     previousProject: ({ commit }) => commit("previousProject"),
     nextProject: ({ commit }) => commit("nextProject"),
+    backToHomepage: ({ commit }) => commit("backToHomepage"),
   },
 });

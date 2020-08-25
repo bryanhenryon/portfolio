@@ -9,7 +9,7 @@
       <li>
         <i class="fas fa-plus"></i>
       </li>
-      <li>
+      <li @click="backToHomepage()">
         <h3>
           <router-link to="/" @click.native="scrollToTop">accueil</router-link>
         </h3>
@@ -40,6 +40,9 @@ export default {
 
     next() {
       this.$store.dispatch("nextProject");
+    },
+    backToHomepage() {
+      this.$store.dispatch("backToHomepage");
     },
     scrollToTop() {
       window.scrollTo(0, 0);
