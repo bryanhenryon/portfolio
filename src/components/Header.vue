@@ -1,7 +1,7 @@
 <template>
   <div id="header">
     <h1>Bryan Henryon</h1>
-    <h2>Développeur Symfony / Vue.js</h2>
+    <h2>Développeur fullstack JavaScript</h2>
   </div>
 </template>
 
