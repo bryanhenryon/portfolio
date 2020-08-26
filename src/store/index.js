@@ -16,6 +16,7 @@ export default new Vuex.Store({
       "Express",
       "MySQL",
       "MongoDB",
+      "Socket.IO",
     ],
     projects: [
       {
@@ -32,7 +33,7 @@ export default new Vuex.Store({
         description: `
         <p>Il s'agit de mon tout premier projet personnel, développé au cours de ma formation de Développeur d'Applications Multimédia à l'école Doranco, puis présenté à ma soutenance de fin d'année. Voulant le rendre le plus complet possible, je l'ai construit autour du framework Symfony afin de me faciliter la gestion du routing, de l'authentification, de la communication avec la base de données ainsi que de la sécurité en général.</p>
         <br>
-        <p>Le site se présente comme un blog de jeux vidéo traditionnel, au design volontairement simpliste et coloré, proposant des articles en rapport avec le média. Les visiteurs peuvent se créer un compte afin de commenter les articles, puis gérer leur profil comme bon leur semble. Ils peuvent également réinitialiser leur mot de passe s'ils l'oublient. Les comptes administrateurs possèdent un accès privilégié au backend d'où l'on peut gérer de manière totale les membres, les articles ainsi que les commentaires postés.</p>
+        <p>Le site se présente comme un blog de jeux vidéo traditionnel, au design volontairement simpliste et coloré, proposant des articles en rapport avec le média. Les visiteurs peuvent se créer un compte afin de commenter les articles, puis gérer leur profil comme bon leur semble. Ils peuvent également réinitialiser leur mot de passe s'ils l'oublient. Les comptes administrateurs possèdent un accès privilégié au back office d'où l'on peut gérer de manière totale les membres, les articles ainsi que les commentaires postés.</p>
         `,
         overview:
           "Un blog comportant des articles aussi bien sur l'actualité que sur des sujets divers en rapport avec le jeu vidéo",
@@ -64,10 +65,11 @@ export default new Vuex.Store({
       },
       {
         id: 3,
-        image: ["test.jpg", "elochat.png", "elochat-2.png"],
+        image: ["test.jpg", "elochat.png", "elochat-2.png", "elochat-3.png"],
         name: "Elochat",
-        description: `...`,
-        overview: "...",
+        description: `L'idée de développer une application de messagerie instantanée m'est venue après avoir découvert Socket.IO, une API WebSocket puissante et multiplateformes en Node.js. WebSocket est une technologie permettant une communication bidirectionnelle entre un client et un serveur, ce qui permet de recevoir les réponses de ce dernier sans avoir à recharger la page.`,
+        overview:
+          "Messagerie instantanée avec système d'authentification réalisée avec Node.js et Socket.IO",
         used_technologies: [
           "HTML5",
           "CSS3",
@@ -76,6 +78,7 @@ export default new Vuex.Store({
           "Node.js",
           "Express",
           "MongoDB",
+          "Moment.js",
           "Socket.IO",
         ],
         year_of_creation: 2020,
@@ -121,7 +124,7 @@ export default new Vuex.Store({
         name: "Chasseur de Monstres",
         description: `<p>Portant un grand intérêt aux jeux vidéo depuis mon enfance, ce projet est né de ma volonté de développer un petit jeu en JavaScript. C'est également mon premier projet réalisé avec Vue.js, idéal pour concevoir les bases du framework.</p>
           <br>
-          <p>Le joueur a la possibilité de nommer son personnage — qui sera nommé "Mystérieux Chevalier" par défaut — avant de commencer la partie. Une fois la partie lancée, l'interface de combat apparaît. Le joueur a la possibilité d'utiliser son attaque de base ou bien d'utiliser son attaque spéciale ou son soin qui sont tous deux à usage unique. A chaque action du joueur, le monstre frappe à son tour, tandis qu'un historique du combat se développe sous la barre d'action. Un nouveau monstre est généré à chaque combat, et les victoires ainsi que les morts du joueur sont enregistrées afin d'être affichées dans le menu principal.</p>
+          <p>Le joueur a la possibilité de nommer son personnage — qui sera nommé "Mystérieux Chevalier" par défaut — avant de commencer la partie. Une fois la partie lancée, l'interface de combat apparaît. Le joueur a la possibilité d'utiliser son attaque de base ou bien d'utiliser son attaque spéciale ou son soin qui sont tous deux à usage unique. A chaque action du joueur, le monstre frappe à son tour, tandis qu'un historique du combat se développe sous la barre d'action. Un nouveau monstre est généré à chaque combat, et les victoires ainsi que les morts du joueur sont enregistrées puis affichées dans le menu principal.</p>
           `,
         overview: "Petit jeu de rôle au tour par tour réalisé avec Vue.js",
         used_technologies: ["HTML5", "CSS3", "Foundation", "Vue.js"],
