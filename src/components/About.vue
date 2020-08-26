@@ -7,20 +7,26 @@
       </div>
       <div id="about-description">
         <p>Bonjour 👋, je suis Bryan.</p>
-        <p>Je suis un développeur web situé en Seine-Saint-Denis, dans la banlieue de Paris. Je suis principalement orienté frontend car j'aime développer des sites ergonomiques, réactifs et proprement designés. J'adore apprendre de nouvelles technologies et varier mes projets. J'élargis actuellement mes connaissances en JavaScript via l'apprentissage de Vue.js.</p>
         <p>
-          Je possède également des compétences côté backend, en PHP et SQL &mdash; que j'ai acquises durant ma formation à l'école
-          <a
-            href="https://www.doranco.fr/"
-            style="color:#79ad80;"
-            target="_blank"
-            rel="noopener"
-          >Doranco</a>, où j'ai décroché mon diplôme de Développeur d'Applications Multimédia &mdash; , qui me permettent de savoir sécuriser une application web ainsi que communiquer avec sa base de données.
+          Je suis un développeur web situé en Seine-Saint-Denis, dans la
+          banlieue de Paris. Je suis orienté full stack car j'aime développer
+          tous types d'applications et je déteste être limité dans mes
+          créations. J'aime développer des sites ergonomiques, réactifs et
+          proprement designés. J'adore apprendre de nouvelles technologies et
+          varier mes projets. J'approfondis actuellement mes connaissances en
+          JavaScript via l'apprentissage simultané de Node et Vue.js.
+        </p>
+        <p>
+          Cependant, je m'ennuie, tout seul, à coder de mon côté. 😪 J'aimerais
+          rejoindre une équipe aux côtés de laquelle je pourrais travailler sur
+          des projets ambitieux et gagner en expérience, c'est pourquoi je suis
+          activement à la recherche de tout type de contrat, alors n'hésitez pas
+          à me contacter si mon profil vous intéresse !
         </p>
         <div id="about-skills">
           <h4>Connaissances techniques</h4>
           <ul>
-            <li v-for="(skill,index) of getSkills" :key="index">{{ skill }}</li>
+            <li v-for="(skill, index) of getSkills" :key="index">{{ skill }}</li>
           </ul>
         </div>
       </div>
@@ -105,8 +111,8 @@ export default {
     display: block;
 
     #about-img {
-      width: 23%;
-      min-width: 175px;
+      width: 24.5%;
+      min-width: 200px;
       img {
         border-radius: 10px 0 0 0;
         padding: 0px 10px 0 0;
