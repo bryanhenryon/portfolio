@@ -23,11 +23,11 @@ export default new Vuex.Store({
         id: 1,
         image: [
           "test.jpg",
-          "last-life.png",
-          "last-life-2.png",
-          "last-life-3.png",
-          "last-life-4.png",
-          "last-life-5.png",
+          "projects/last-life/last-life.png",
+          "projects/last-life/last-life-2.png",
+          "projects/last-life/last-life-3.png",
+          "projects/last-life/last-life-4.png",
+          "projects/last-life/last-life-5.png",
         ],
         name: "Last Life",
         description: `
@@ -51,7 +51,11 @@ export default new Vuex.Store({
       },
       {
         id: 2,
-        image: ["test.jpg", "les-pays-du-monde.png", "les-pays-du-monde-2.png"],
+        image: [
+          "test.jpg",
+          "projects/les-pays-du-monde/les-pays-du-monde.png",
+          "projects/les-pays-du-monde/les-pays-du-monde-2.png",
+        ],
         name: "Les Pays du Monde",
         description: `<p>J'ai réalisé cette application lorsque je me suis intéressé à JavaScript en profondeur, et plus particulièrement aux requêtes HTTP asynchrones. Je voulais pratiquer, alors j'ai tout bonnement cherché sur Google une liste des API REST les plus populaires afin de construire un projet intéressant autour d'une d'entre elles, puis j'ai trouvé REST Countries.</p>
           <br>
@@ -65,7 +69,12 @@ export default new Vuex.Store({
       },
       {
         id: 3,
-        image: ["test.jpg", "elochat.png", "elochat-2.png", "elochat-3.png"],
+        image: [
+          "test.jpg",
+          "projects/elochat/elochat.png",
+          "projects/elochat/elochat-2.png",
+          "projects/elochat/elochat-3.png",
+        ],
         name: "Elochat",
         description: `L'idée de développer une application de messagerie instantanée m'est venue après avoir découvert Socket.IO, une API WebSocket puissante et multiplateformes en Node.js. WebSocket est une technologie permettant une communication bidirectionnelle entre un client et un serveur, ce qui permet de recevoir les réponses de ce dernier sans avoir à recharger la page.`,
         overview:
@@ -87,7 +96,7 @@ export default new Vuex.Store({
       },
       {
         id: 4,
-        image: ["test.jpg", "github-finder.png"],
+        image: ["test.jpg", "projects/github-finder/github-finder.png"],
         name: "GitHub Finder",
         description: `<p>J'ai réalisé ce projet afin de m'entrainer à effectuer des requêtes HTTP asynchrones en JavaScript, autrement dit, des appels Ajax. Il s'agit de ma toute première tentative. Derrière le rideau, à chaque caractère entré dans la barre de recherche, une requête est envoyée au serveur de GitHub qui me renvoie les informations de l'utilisateur correspondant.</p>
           <br>
@@ -102,7 +111,11 @@ export default new Vuex.Store({
       {
         id: 5,
         name: "Ma To-do List",
-        image: ["test.jpg", "ma-to-do-list.png", "ma-to-do-list-2.png"],
+        image: [
+          "test.jpg",
+          "projects/ma-to-do-list/ma-to-do-list.png",
+          "projects/ma-to-do-list/ma-to-do-list-2.png",
+        ],
         description:
           "<p>Une to-do list basique réalisée dans le but de pratiquer mes connaissances en JavaScript. L'utilisateur a la possibilité d'ajouter une tâche, de la cocher ou de la supprimer, de toutes les supprimer ou bien de les filtrer via le menu ou la barre de recherche. Les tâches sont enregistrées dans le local storage du navigateur afin de ne pas les perdre à la fermeture de celui-ci.</p>",
         overview:
@@ -116,10 +129,10 @@ export default new Vuex.Store({
         id: 6,
         image: [
           "test.jpg",
-          "chasseur-de-monstres.png",
-          "chasseur-de-monstres-2.png",
-          "chasseur-de-monstres-3.png",
-          "chasseur-de-monstres-4.png",
+          "projects/chasseur-de-monstres/chasseur-de-monstres.png",
+          "projects/chasseur-de-monstres/chasseur-de-monstres-2.png",
+          "projects/chasseur-de-monstres/chasseur-de-monstres-3.png",
+          "projects/chasseur-de-monstres/chasseur-de-monstres-4.png",
         ],
         name: "Chasseur de Monstres",
         description: `<p>Portant un grand intérêt aux jeux vidéo depuis mon enfance, ce projet est né de ma volonté de développer un petit jeu en JavaScript. C'est également mon premier projet réalisé avec Vue.js, idéal pour concevoir les bases du framework.</p>
