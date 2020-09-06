@@ -5,7 +5,11 @@
       <div class="card" v-for="project in getProjects" :key="project.id">
         <div class="card-img">
           <router-link :to="'/projet/' + project.id">
-            <img @click="scrollToTop" :src="'img/' + project.image[1]" :alt="project.name" />
+            <img
+              @click="scrollToTop"
+              :src="'img/' + project.image[1]"
+              :alt="project.name"
+            />
           </router-link>
         </div>
         <div class="card-text">
@@ -14,7 +18,8 @@
               <router-link
                 @click.native="scrollToTop"
                 :to="'/projet/' + project.id"
-              >{{ project.name }}</router-link>
+                >{{ project.name }}</router-link
+              >
             </h4>
           </div>
           <div class="card-description">
@@ -29,7 +34,11 @@
                 <a :href="project.code" target="_blank" rel="noopener">code</a>
               </li>
               <li>
-                <router-link @click.native="scrollToTop" :to="'/projet/' + project.id">details</router-link>
+                <router-link
+                  @click.native="scrollToTop"
+                  :to="'/projet/' + project.id"
+                  >details</router-link
+                >
               </li>
             </ul>
           </div>

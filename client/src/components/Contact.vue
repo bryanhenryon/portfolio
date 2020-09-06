@@ -89,11 +89,9 @@ export default {
         params.append("name", this.form.name);
         params.append("email", this.form.email);
         params.append("message", this.form.message);
-        axios
-          .post("https://api.bryanhenryon.fr/sendEmail.php", params)
-          .catch(error => {
-            console.log(error);
-          });
+        axios.post("/send", params).catch(error => {
+          console.log(error);
+        });
         (this.form.name = ""), (this.form.email = ""), (this.form.message = "");
       }
     }

@@ -1,9 +1,7 @@
 <template>
   <div id="project">
     <app-navbar></app-navbar>
-    <h3 id="project-name">
-      projet : {{ getProjects[getId - 1].name.toLowerCase() }}
-    </h3>
+    <h3 id="project-name">projet : {{ getProjects[getId - 1].name.toLowerCase() }}</h3>
     <div class="card">
       <div id="project-image">
         <img
@@ -27,20 +25,10 @@
       <div class="card-action">
         <ul>
           <li>
-            <a
-              :href="getProjects[getId - 1].demo"
-              target="_blank"
-              rel="noopener"
-              >demo</a
-            >
+            <a :href="getProjects[getId - 1].demo" target="_blank" rel="noopener">demo</a>
           </li>
           <li>
-            <a
-              :href="getProjects[getId - 1].code"
-              target="_blank"
-              rel="noopener"
-              >code</a
-            >
+            <a :href="getProjects[getId - 1].code" target="_blank" rel="noopener">code</a>
           </li>
         </ul>
       </div>
@@ -56,9 +44,7 @@
             v-for="(technology, index) of getProjects[getId - 1]
               .used_technologies"
             :key="index"
-          >
-            {{ technology }}
-          </li>
+          >{{ technology }}</li>
         </ul>
       </div>
 

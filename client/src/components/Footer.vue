@@ -1,11 +1,9 @@
 <template>
   <footer>
     &copy; {{ getCopyright }} Bryan Henryon &mdash;
-    <a
-      href="https://www.bryanhenryon.fr"
-      target="_blank"
-      rel="noopener"
-    >www.bryan.henryon.fr</a>
+    <a href="https://www.bryanhenryon.fr" target="_blank" rel="noopener"
+      >www.bryan.henryon.fr</a
+    >
   </footer>
 </template>
 

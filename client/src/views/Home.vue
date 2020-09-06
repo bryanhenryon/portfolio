@@ -29,6 +29,6 @@ export default {
     "app-about": About,
     "app-contact": Contact,
     "app-footer": Footer
-  },
+  }
 };
 </script>
