@@ -10,6 +10,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(router);
 
+router.get(/.*/, (req, res) => res.sendFile(__dirname + "/public/index.html"));
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
