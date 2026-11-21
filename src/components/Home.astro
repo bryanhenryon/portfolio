@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { useTranslations, type Lang } from "../i18n";
+import Nav from "./Nav.astro";
+import Hero from "./Hero.astro";
+import Ribbons from "./Ribbons.astro";
+import Services from "./Services.astro";
+import Work from "./Work.astro";
+import Process from "./Process.astro";
+import About from "./About.astro";
+import Contact from "./Contact.astro";
+import Footer from "./Footer.astro";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+<BaseLayout lang={lang}>
+  <Nav lang={lang} />
+  <main>
+    <Hero t={t} lang={lang} />
+    <Ribbons t={t} />
+    <Services t={t} />
+    <Work t={t} />
+    <Process t={t} />
+    <About t={t} />
+    <Contact t={t} />
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>

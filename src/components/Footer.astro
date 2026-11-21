@@ -1,0 +1,21 @@
+---
+import { locales, useTranslations, type Lang } from "../i18n";
+import LocalClock from "./react/LocalClock";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="container footer__row">
+    <span>
+      © {year} Bryan Henryon — <span set:html={t.madeWith} /> · <a href={locales[lang].legalPath} class="footer__legal">{t.legal}</a>
+    </span>
+    <span>{t.localTime} · <LocalClock client:visible locale={locales[lang].timeLocale} /></span>
+    <a href="#top" class="footer__top" data-magnetic>{t.backTop}</a>
+  </div>
+  <div class="footer__giant" aria-hidden="true">
+    {[..."henryon"].map((c, i) => <span style={`--i:${i}`}>{c}</span>)}
+  </div>
+</footer>

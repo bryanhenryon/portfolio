@@ -1,0 +1,88 @@
+---
+import Head from "../components/Head.astro";
+import bryan from "../assets/bryan.webp";
+import { social } from "../data/social";
+import { locales, otherLang, useTranslations, type Lang } from "../i18n";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const loc = locales[lang];
+const alt = locales[otherLang(lang)];
+
+// Absolute URLs (canonical, hreflang, og:url) need `site` in astro.config.mjs
+const site = Astro.site;
+const abs = (path: string) => (site ? new URL(path, site).href : undefined);
+
+/* Structured data: tells Google this site belongs to the person "Bryan Henryon",
+   so it can rank it for name searches and show "Bryan Henryon" as the site name.
+   Public profiles (`sameAs`) come from src/data/social.ts. */
+const sameAs = social.map((s) => s.url);
+const home = abs(locales.fr.path);
+const jsonLd = site && {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${home}#website`,
+      url: home,
+      name: "Bryan Henryon",
+      inLanguage: [locales.fr.htmlLang, locales.en.htmlLang],
+      publisher: { "@id": `${home}#person` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${home}#person`,
+      name: "Bryan Henryon",
+      url: home,
+      image: abs(bryan.src),
+      jobTitle: lang === "en" ? "Freelance web developer" : "Développeur web freelance",
+      ...(sameAs.length && { sameAs }),
+    },
+  ],
+};
+---
+<!doctype html>
+<html lang={loc.htmlLang}>
+  <Head title={t.metaTitle} description={t.metaDesc}>
+    <meta property="og:title" content={t.metaTitle} />
+    <meta property="og:description" content={t.ogDesc} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={loc.ogLocale} />
+    {site && (
+      <>
+        <link rel="canonical" href={abs(loc.path)} />
+        <meta property="og:url" content={abs(loc.path)} />
+        <meta property="og:image" content={abs(`/og-${lang}.jpg`)} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={t.metaTitle} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="alternate" hreflang={loc.htmlLang} href={abs(loc.path)} />
+        <link rel="alternate" hreflang={alt.htmlLang} href={abs(alt.path)} />
+        {/* Visitors who are neither FR nor EN (German, Spanish…): English version, more widely understood */}
+        <link rel="alternate" hreflang="x-default" href={abs(locales.en.path)} />
+        <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+      </>
+    )}
+  </Head>
+  <body class="is-loading">
+    <div class="loader" aria-hidden="true">
+      <div class="loader__cols"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="loader__word" id="loaderWord">{lang === "en" ? "Hello" : "Bonjour"}</div>
+    </div>
+
+    <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+
+    <div class="cursor" aria-hidden="true">
+      <div class="cursor__dot"></div>
+      <div class="cursor__ring"><span class="cursor__label"></span></div>
+    </div>
+
+    <slot />
+
+    <script>
+      import "../scripts/main";
+    </script>
+  </body>
+</html>

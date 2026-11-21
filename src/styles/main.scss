@@ -1,0 +1,36 @@
+// =========================================================
+// Portfolio: light & colourful theme
+//   abstracts/  Sass-only helpers (no CSS output)
+//   base/       tokens, reset, shared keyframes, utilities
+//   components/ reusable UI pieces
+//   sections/   one partial per page section, in page order
+//
+// Order matters: later partials win ties in the cascade.
+// =========================================================
+
+@use "base/tokens";
+@use "base/reset";
+@use "base/animations";
+@use "base/utilities";
+
+@use "components/loader";
+@use "components/overlays";
+@use "components/cursor";
+@use "components/buttons";
+@use "components/nav"; // after buttons: .nav__cta is also a .btn
+@use "components/lang";
+@use "components/reveal";
+
+@use "sections/hero";
+@use "sections/ribbons";
+@use "sections/section";
+@use "sections/services";
+@use "sections/work";
+@use "sections/process";
+@use "sections/about";
+@use "sections/contact"; // after hero: .contact__bg .blob resizes the hero blobs
+@use "sections/footer";
+@use "sections/not-found";
+@use "sections/page"; // simple text pages (legal notice)
+
+@use "base/reduced-motion"; // always last

@@ -1,0 +1,33 @@
+@use "../abstracts" as *;
+
+.container {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.grad-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  padding-right: 0.08em;
+  background: linear-gradient(90deg, var(--pink), var(--orange), var(--yellow), var(--orange), var(--pink));
+  background-size: 300% 100%;
+  @include clip-text;
+  animation: gradShift 6s linear infinite;
+
+  &--cool {
+    background-image: linear-gradient(90deg, var(--blue), var(--violet), var(--pink), var(--violet), var(--blue));
+  }
+}
+
+// Text colours for the code snippets.
+.c-pink { color: var(--pink); }
+.c-blue { color: var(--blue); }
+.c-mint { color: #12a87e; }
+.c-orange { color: var(--orange); }
+.c-violet { color: var(--violet); }
+.c-soft { color: var(--ink-soft); }

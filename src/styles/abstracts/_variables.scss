@@ -1,0 +1,13 @@
+// Theme colours, fonts and easings live as CSS custom properties in
+// base/_tokens.scss (they can change at runtime and are set inline in markup).
+// Only values Sass itself needs to compute with are defined here.
+
+// Main text colour, also used for every translucent shadow and line.
+$ink: #1f1640;
+
+// Max-width breakpoints (desktop-first, same as the original stylesheet).
+$breakpoints: (
+  lg: 1000px,
+  md: 760px,
+  sm: 480px,
+);

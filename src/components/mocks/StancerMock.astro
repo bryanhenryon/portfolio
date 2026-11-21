@@ -1,0 +1,22 @@
+---
+import type { Dictionary } from "../../i18n";
+
+interface Props { t: Dictionary }
+const { t } = Astro.props;
+---
+<div class="mock-win">
+  <div class="mini-browser__bar"><i></i><i></i><i></i><span>stancer.com</span></div>
+  <div class="mock-pay">
+    <div class="mp-card" aria-hidden="true">
+      <span class="mp-card__chip"></span>
+      <span class="mp-card__num">•••• •••• •••• 4242</span>
+      <span class="mp-card__foot"><i></i><b>12/28</b></span>
+    </div>
+    <div class="mp-form">
+      <i></i>
+      <span class="mp-field"></span>
+      <span class="mp-row"><span class="mp-field"></span><span class="mp-field"></span></span>
+      <b class="mp-btn">{t.stPay}</b>
+    </div>
+  </div>
+</div>

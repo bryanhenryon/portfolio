@@ -1,0 +1,35 @@
+---
+import type { Dictionary } from "../i18n";
+
+interface Props { t: Dictionary }
+const { t } = Astro.props;
+
+/* Tech stack */
+const ribbons = [
+  {
+    cls: "ribbon--b", dir: 1, sep: "✺",
+    items: ["API REST", "GraphQL", "Vite", "Vitest", "Playwright", "VitePress", "Strapi", "Prismic", "Supabase", "Git", "Docker"],
+  },
+  {
+    cls: "ribbon--a", dir: -1, sep: "✦",
+    items: ["JavaScript", "TypeScript", "React", "Next.js", "Vue.js", "Nuxt", "Astro", "HTML5", "CSS3", "Sass", "Tailwind", "Bootstrap", "Figma"],
+  },
+];
+---
+<section class="ribbons" aria-label={t.techLabel}>
+  {ribbons.map((r) => (
+    <div class={`ribbon ${r.cls}`}>
+      <div class="ribbon__track" data-dir={r.dir}>
+        {/* The list is rendered twice so the marquee can loop seamlessly; the copy is hidden from screen readers */}
+        {[false, true].map((copy) =>
+          r.items.map((item) => (
+            <>
+              <span aria-hidden={copy ? "true" : undefined}>{item}</span>
+              <i aria-hidden="true">{r.sep}</i>
+            </>
+          ))
+        )}
+      </div>
+    </div>
+  ))}
+</section>

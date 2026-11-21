@@ -1,0 +1,84 @@
+@use "../abstracts" as *;
+
+// Simple text pages (layouts/PageLayout.astro): legal notice…
+.page {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
+  }
+
+  &__lang {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    transition: color 0.3s;
+
+    &:hover { color: var(--pink); }
+  }
+
+  &__main {
+    max-width: 760px;
+    padding-top: clamp(1.5rem, 5vw, 4rem);
+    padding-bottom: clamp(3rem, 8vw, 6rem);
+  }
+
+  &__back {
+    margin-top: 2.5rem;
+  }
+
+  &__footer {
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+}
+
+.prose {
+  margin-top: 1rem;
+  color: var(--ink-soft);
+
+  h2 {
+    margin: 2.5rem 0 0.75rem;
+    font-size: 1.35rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  p + p {
+    margin-top: 0.85rem;
+  }
+
+  strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--pink);
+    text-underline-offset: 0.2em;
+    transition: color 0.3s;
+
+    &:hover { color: var(--pink); }
+  }
+
+  &__note {
+    padding: 0.85rem 1.1rem;
+    border-radius: 14px;
+    background: var(--p-yellow);
+    font-size: 0.95rem;
+  }
+
+  &__updated {
+    margin-top: 2.5rem !important;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,102 @@
+---
+import type { Dictionary } from "../i18n";
+import Eyebrow from "./Eyebrow.astro";
+
+interface Props { t: Dictionary }
+const { t } = Astro.props;
+---
+<section id="services" class="section container">
+  <div class="section__head">
+    <Eyebrow color="var(--pink)" html={t.svcEyebrow} />
+    <h2 class="h2" data-split set:html={t.svcTitle} />
+    <p class="section__sub" data-reveal set:html={t.svcSub} />
+  </div>
+
+  <div class="bento">
+    <article class="tile tile--web" data-reveal data-tilt>
+      <div class="tile__visual">
+        <div class="mini-browser">
+          <div class="mini-browser__bar"><i></i><i></i><i></i><span>{t.webUrl}</span></div>
+          <div class="mini-browser__body">
+            <div class="mb-side"><span></span><span></span><span></span><span></span></div>
+            <div class="mb-main">
+              <div class="mb-hero"></div>
+              <div class="mb-cards"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tile__text">
+        <h3 set:html={t.webTitle} />
+        <p set:html={t.webText} />
+      </div>
+      <span class="tile__arrow">↗</span>
+    </article>
+
+    <article class="tile tile--api" data-reveal data-tilt>
+      <div class="tile__visual">
+        <div class="term">
+          <div class="term__l" style="--i:0"><b class="c-pink">GET</b> /api/projects</div>
+          <div class="term__l c-soft" style="--i:1">→ 200 OK · 42ms</div>
+          <div class="term__l" style="--i:2">{"{ "}<b class="c-blue">"status"</b>: <b class="c-mint">"shipped"</b>,</div>
+          <div class="term__l" style="--i:3">&nbsp;&nbsp;<b class="c-blue">"bugs"</b>: <b class="c-orange">0</b>{" }"}</div>
+        </div>
+      </div>
+      <div class="tile__text">
+        <h3 set:html={t.apiTitle} />
+        <p set:html={t.apiText} />
+      </div>
+      <span class="tile__arrow">↗</span>
+    </article>
+
+    <article class="tile tile--cloud" data-reveal data-tilt>
+      <div class="tile__visual">
+        <div class="pipeline">
+          <div class="pipeline__node" style="--i:0"><span>⚙</span><small>build</small></div>
+          <div class="pipeline__line"><i></i></div>
+          <div class="pipeline__node" style="--i:1"><span>✓</span><small>test</small></div>
+          <div class="pipeline__line"><i style="animation-delay:.8s"></i></div>
+          <div class="pipeline__node" style="--i:2"><span>🚀</span><small>deploy</small></div>
+        </div>
+      </div>
+      <div class="tile__text">
+        <h3 set:html={t.cloudTitle} />
+        <p set:html={t.cloudText} />
+      </div>
+      <span class="tile__arrow">↗</span>
+    </article>
+
+    <article class="tile tile--perf" data-reveal data-tilt>
+      <div class="tile__visual">
+        <div class="gauge">
+          <svg viewBox="0 0 120 120">
+            <defs><linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2fd6a5"/><stop offset="1" stop-color="#4d7cff"/></linearGradient></defs>
+            <circle cx="60" cy="60" r="50" class="gauge__bg" />
+            <circle cx="60" cy="60" r="50" class="gauge__fg" pathLength="100" />
+          </svg>
+          <div class="gauge__num"><span data-count="98">0</span><small>{t.perfScore}</small></div>
+        </div>
+      </div>
+      <div class="tile__text">
+        <h3 set:html={t.perfTitle} />
+        <p set:html={t.perfText} />
+      </div>
+      <span class="tile__arrow">↗</span>
+    </article>
+
+    <article class="tile tile--consult" data-reveal data-tilt>
+      <div class="tile__visual">
+        <div class="chat">
+          <div class="bubble bubble--in" style="--i:0">{t.chat1}</div>
+          <div class="bubble bubble--out" style="--i:1">{t.chat2}</div>
+          <div class="bubble bubble--in" style="--i:2">{t.chat3}</div>
+        </div>
+      </div>
+      <div class="tile__text">
+        <h3 set:html={t.consultTitle} />
+        <p set:html={t.consultText} />
+      </div>
+      <span class="tile__arrow">↗</span>
+    </article>
+  </div>
+</section>

@@ -1,0 +1,45 @@
+---
+import type { Dictionary } from "../i18n";
+import Eyebrow from "./Eyebrow.astro";
+
+interface Props { t: Dictionary }
+const { t } = Astro.props;
+
+const steps = [
+  { color: "var(--pink)", emoji: "☕", title: t.s1Title, text: t.s1Text, tag: t.week1 },
+  { color: "var(--orange)", emoji: "🗺️", title: t.s2Title, text: t.s2Text, tag: t.week1 },
+  { color: "var(--blue)", emoji: "🛠️", title: t.s3Title, text: t.s3Text, tag: t.weeksN },
+  { color: "var(--mint)", emoji: "🚀", title: t.s4Title, text: t.s4Text, tag: t.ongoing },
+];
+const path = "M50,0 L50,125 C90,187 90,312 50,375 C10,437 10,562 50,625 C90,687 90,812 50,875 L50,1000";
+---
+<section id="process" class="section container">
+  <div class="section__head section__head--center">
+    <Eyebrow color="var(--orange)" html={t.procEyebrow} />
+    <h2 class="h2" data-split set:html={t.procTitle} />
+  </div>
+
+  <div class="timeline" id="timeline">
+    <svg class="timeline__svg" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="tlGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ff4fa3" /><stop offset=".35" stop-color="#ff8a3d" /><stop offset=".65" stop-color="#4d7cff" /><stop offset="1" stop-color="#2fd6a5" />
+        </linearGradient>
+      </defs>
+      <path class="timeline__bg" d={path} />
+      <path class="timeline__line" id="timelinePath" pathLength="1" d={path} />
+    </svg>
+
+    {steps.map((s, i) => (
+      <div class="tstep" style={`--c:${s.color}`}>
+        <span class="tstep__dot">{String(i + 1).padStart(2, "0")}</span>
+        <div class="tstep__card">
+          <span class="tstep__emoji">{s.emoji}</span>
+          <h3 set:html={s.title} />
+          <p set:html={s.text} />
+          <span class="tstep__tag">{s.tag}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

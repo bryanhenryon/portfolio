@@ -1,0 +1,6 @@
+@use "variables" as *;
+
+// Translucent ink, for shadows and hairlines: ink(0.1) → rgba(31, 22, 64, 0.1)
+@function ink($alpha) {
+  @return rgba($ink, $alpha);
+}

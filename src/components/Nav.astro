@@ -1,0 +1,41 @@
+---
+import { locales, otherLang, useTranslations, type Lang } from "../i18n";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const target = otherLang(lang);
+
+const links = [
+  { href: "#services", color: "#ffe1ee", label: t.navServices },
+  { href: "#work", color: "#e2e9ff", label: t.navWork },
+  { href: "#process", color: "#fff0c2", label: t.navProcess },
+  { href: "#about", color: "#d8f7ea", label: t.navAbout },
+];
+---
+<header class="nav">
+  <div class="nav__inner">
+    <a href="#top" class="nav__logo" data-magnetic>
+      <span class="nav__logo-blob"></span>
+      <span>bryan<b>henryon</b></span>
+    </a>
+    <nav class="nav__links" aria-label={t.navLabel}>
+      <span class="nav__pill" aria-hidden="true"></span>
+      {links.map((l) => <a href={l.href} data-color={l.color}>{l.label}</a>)}
+    </nav>
+    <div class="nav__right">
+      <a
+        class="lang"
+        id="langToggle"
+        href={locales[target].path}
+        hreflang={locales[target].htmlLang}
+        aria-label={t.langSwitch}
+      >
+        <span data-l="fr">FR</span><span data-l="en">EN</span><i class="lang__knob" aria-hidden="true"></i>
+      </a>
+      <a href="#contact" class="btn btn--grad btn--sm nav__cta" data-magnetic>
+        <span>{t.navCta}</span><span class="btn__arrow">→</span>
+      </a>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,47 @@
+// Scroll / load reveal effects, driven by scripts/split.ts and scripts/scroll.ts.
+
+// Split-text words: each word slides up from its own clipping box.
+.w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.04em 0.02em 0.12em;
+  margin: -0.04em -0.02em -0.12em;
+
+  &__in {
+    display: inline-block;
+    transform: translateY(115%) rotate(10deg);
+    transform-origin: left bottom;
+    transition: transform 1.1s var(--ease-out);
+    transition-delay: calc(var(--i, 0) * 0.055s + var(--base, 0s));
+  }
+}
+
+.is-split-in .w__in {
+  transform: none;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+  transition-delay: var(--delay, 0s);
+
+  &.in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.9s var(--ease-out) var(--d, 0s),
+    transform 0.9s var(--ease-out) var(--d, 0s);
+
+  body.loaded & {
+    opacity: 1;
+    transform: none;
+  }
+}

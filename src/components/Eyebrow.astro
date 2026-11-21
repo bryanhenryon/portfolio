@@ -1,0 +1,9 @@
+---
+interface Props {
+  /** CSS colour (usually a var) of the little dot */
+  color: string;
+  html: string;
+}
+const { color, html } = Astro.props;
+---
+<span class="eyebrow" data-reveal><i style={`--c:${color}`}></i><span set:html={html} /></span>

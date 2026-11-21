@@ -1,0 +1,58 @@
+@use "../abstracts" as *;
+
+// =========================================================
+// Design tokens: tweak these to re-theme the whole site.
+// =========================================================
+
+// Animatable angles (used by the conic-gradient spins and the about orbit).
+@property --a {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --spin {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+:root {
+  --bg: #fdf8f3;
+  --surface: #ffffff;
+  --ink: #{$ink}; // text colour (defined in abstracts/_variables.scss)
+  --ink-soft: #625a7d;
+  --line: #{ink(0.1)};
+
+  // Vivid palette
+  --pink: #ff4fa3;
+  --orange: #ff8a3d;
+  --yellow: #ffd23f;
+  --lime: #c3f55c;
+  --blue: #4d7cff;
+  --violet: #8b5cf6;
+  --mint: #2fd6a5;
+
+  // Pastel palette
+  --p-pink: #ffe1ee;
+  --p-blue: #e2e9ff;
+  --p-yellow: #fff0c2;
+  --p-mint: #d8f7ea;
+  --p-violet: #ece3ff;
+  --p-orange: #ffe6d5;
+
+  --grad: linear-gradient(100deg, var(--pink), var(--orange) 50%, var(--yellow));
+  --grad-cool: linear-gradient(100deg, var(--blue), var(--violet) 50%, var(--pink));
+  --grad-btn: linear-gradient(100deg, #ff4fa3, #a35cf6 50%, #4d7cff, #ff4fa3);
+
+  // Families + fallbacks are configured in astro.config.mjs (`fonts`).
+  --font-display: var(--font-bricolage);
+  --font-serif: var(--font-instrument);
+  --font-mono: var(--font-dm-mono);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-io: cubic-bezier(0.76, 0, 0.24, 1);
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --gutter: clamp(16px, 4vw, 56px);
+  --shadow: 0 20px 50px -20px #{ink(0.25)};
+}

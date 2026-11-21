@@ -1,0 +1,34 @@
+---
+/* Served by the host for any unknown URL, whatever the language,
+   so it's bilingual: French first, with a way back to the English site. */
+import Head from "../components/Head.astro";
+
+const blobs = [
+  "--c:#ff7ab8;--x:-15%;--y:-25%;--tx:12vw;--ty:10vh;--d:16s",
+  "--c:#7aa2ff;--x:60%;--y:-30%;--tx:-10vw;--ty:16vh;--d:19s",
+  "--c:#ffd84f;--x:-10%;--y:50%;--tx:16vw;--ty:-12vh;--d:21s",
+  "--c:#5fe3b9;--x:60%;--y:50%;--tx:-14vw;--ty:-10vh;--d:17s",
+];
+---
+<!doctype html>
+<html lang="fr">
+  <Head title="Page introuvable · Bryan Henryon" description="Cette page n'existe pas ou a été déplacée." noindex />
+  <body class="not-found">
+    <div class="not-found__bg" aria-hidden="true">
+      {blobs.map((style) => <span class="blob" style={style}></span>)}
+    </div>
+
+    <main class="not-found__content">
+      <p class="not-found__code" aria-hidden="true">404</p>
+      <h1 class="h2">Oups, cette page <em class="grad-text">n'existe pas</em>.</h1>
+      <p class="not-found__sub">
+        Le lien est peut-être cassé, ou la page a déménagé.<br />
+        <span lang="en">Sorry, this page doesn't exist.</span>
+      </p>
+      <div class="not-found__actions">
+        <a href="/" class="btn btn--grad"><span>Retour à l'accueil</span><span class="btn__arrow">→</span></a>
+        <a href="/en/" class="btn btn--outline" lang="en" hreflang="en"><span>Back to home</span></a>
+      </div>
+    </main>
+  </body>
+</html>

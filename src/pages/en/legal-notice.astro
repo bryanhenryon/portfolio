@@ -1,0 +1,56 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import { legal } from "../../data/legal";
+
+const updated = new Date(legal.updated).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+---
+<PageLayout lang="en" title="Legal notice" description="Legal notice and privacy policy for bryanhenryon.com." altPath="/mentions-legales/">
+  <p class="prose__note">
+    This is a translation provided for convenience. The <a href="/mentions-legales/" lang="fr">French version</a> prevails.
+  </p>
+
+  <h2>Site publisher</h2>
+  <p>
+    Publication director: {legal.name}.<br />
+    Phone: {legal.phone}<br />
+    Email: <a href={`mailto:${legal.email}`}>{legal.email}</a>
+  </p>
+
+  <h2>Hosting</h2>
+  <p>
+    <strong>{legal.host.name}</strong><br />
+    {legal.host.addressEn}<br />
+    Phone: {legal.host.phone}<br />
+    <a href={legal.host.url} rel="noopener">{legal.host.url.replace("https://", "")}</a>
+  </p>
+
+  <h2>Intellectual property</h2>
+  <p>
+    All content on this site (text, photographs, visuals, logo) belongs to {legal.name} unless stated otherwise.
+    Any reproduction, even partial, is forbidden without prior permission.
+  </p>
+  <p>
+    The Bricolage Grotesque, Instrument Serif and DM Mono typefaces are distributed under the <a href="https://openfontlicense.org" rel="noopener">SIL Open Font License</a>.
+  </p>
+
+  <h2>Personal data and cookies</h2>
+  <p>
+    This site sets <strong>no tracking cookies</strong> and uses <strong>no analytics</strong>.
+    It has no forms: no data is collected when you visit.
+  </p>
+  <p>
+    If you contact me by email or WhatsApp, the information you send (name, contact details, message) is used
+    only to reply to you and follow up on our conversation. It is never sold or shared with third parties,
+    and is kept only as long as our relationship requires.
+  </p>
+  <p>
+    To deliver and secure the site, the host ({legal.host.name}) processes technical data such as your IP address.
+  </p>
+  <p>
+    Under the GDPR, you have the right to access, correct and delete your data.
+    To exercise it, write to <a href={`mailto:${legal.email}`}>{legal.email}</a>.
+    You may also lodge a complaint with the <a href="https://www.cnil.fr/en" rel="noopener">CNIL</a> (French data protection authority).
+  </p>
+
+  <p class="prose__updated">Last updated: {updated}.</p>
+</PageLayout>

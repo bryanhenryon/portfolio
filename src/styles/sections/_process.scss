@@ -1,0 +1,164 @@
+@use "../abstracts" as *;
+
+// =========================================================
+// PROCESS: timeline with alternating cards
+// =========================================================
+
+.timeline {
+  position: relative;
+  max-width: 1040px;
+  margin: 0 auto;
+
+  &__svg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 160px;
+    height: 100%;
+    transform: translateX(-50%);
+    overflow: visible;
+
+    path {
+      fill: none;
+      stroke-width: 6;
+      stroke-linecap: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    @include below(md) {
+      left: 32px;
+      width: 64px;
+    }
+  }
+
+  &__bg {
+    stroke: ink(0.1);
+    stroke-dasharray: 2 12;
+  }
+
+  // drawn on scroll (scripts/scroll.ts)
+  &__line {
+    stroke: url(#tlGrad);
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+}
+
+.tstep {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 160px 1fr;
+  align-items: center;
+  min-height: 280px;
+
+  @include below(md) {
+    grid-template-columns: 64px 1fr;
+    min-height: 0;
+    padding: 1.25rem 0;
+    gap: 1rem;
+  }
+
+  &__dot {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+    z-index: 1;
+    @include circle(64px);
+    display: grid;
+    place-items: center;
+    background: #fff;
+    border: 3px solid var(--line);
+    font-weight: 800;
+    font-size: 1.1rem;
+    transform: scale(0.7);
+    transition:
+      transform 0.6s var(--spring),
+      background 0.4s,
+      border-color 0.4s,
+      box-shadow 0.4s,
+      color 0.4s;
+
+    @include below(md) {
+      grid-column: 1;
+      @include size(52px);
+      font-size: 0.95rem;
+    }
+  }
+
+  &.is-on &__dot {
+    transform: scale(1);
+    background: var(--c);
+    border-color: #fff;
+    color: #fff;
+    box-shadow: 0 0 0 10px color-mix(in srgb, var(--c) 22%, transparent);
+  }
+
+  &__card {
+    grid-row: 1;
+    padding: 1.75rem;
+    border-radius: 26px;
+    background: #fff;
+    box-shadow: var(--shadow);
+    opacity: 0.35;
+    transform: translateX(var(--from, -30px)) rotate(var(--rot, -2deg));
+    transition: opacity 0.7s var(--ease-out), transform 0.9s var(--spring);
+  }
+
+  // Cards alternate left / right of the line on desktop, all right on mobile.
+  &:nth-child(odd of .tstep) &__card {
+    grid-column: 1;
+    --from: -40px;
+    --rot: -2deg;
+  }
+
+  &:nth-child(even of .tstep) &__card {
+    grid-column: 3;
+    --from: 40px;
+    --rot: 2deg;
+  }
+
+  @include below(md) {
+    &:nth-child(odd of .tstep) &__card,
+    &:nth-child(even of .tstep) &__card {
+      grid-column: 2;
+      --from: 30px;
+      --rot: 1deg;
+    }
+  }
+
+  &.is-on &__card {
+    opacity: 1;
+    transform: none;
+  }
+
+  &__emoji {
+    display: inline-grid;
+    place-items: center;
+    @include size(48px);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--c) 18%, #fff);
+    font-size: 1.4rem;
+    margin-bottom: 0.9rem;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  p {
+    color: var(--ink-soft);
+    margin-top: 0.4rem;
+  }
+
+  &__tag {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 99px;
+    background: color-mix(in srgb, var(--c) 16%, #fff);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+  }
+}

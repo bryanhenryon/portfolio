@@ -1,0 +1,30 @@
+---
+import type { Dictionary } from "../../i18n";
+
+interface Props { t: Dictionary }
+const { t } = Astro.props;
+
+// 5×5 decorative "QR code" pattern
+const qr = "1110110101011101010111011".split("");
+---
+<div class="mock-event">
+  <div class="mock-win">
+    <div class="mini-browser__bar"><i></i><i></i><i></i><span>digitevent.com</span></div>
+    <div class="me-banner">
+      <small>{t.deDate}</small>
+      <b>{t.deEvent}</b>
+    </div>
+    <div class="me-form">
+      <span class="mp-field"></span>
+      <span class="mp-field"></span>
+      <b class="me-btn">{t.deCta}</b>
+    </div>
+  </div>
+  <div class="me-badge" aria-hidden="true">
+    <span class="me-badge__hole"></span>
+    <span class="me-badge__avatar"></span>
+    <i></i><i></i>
+    <span class="me-badge__qr">{qr.map((c) => <em class={c === "1" ? "on" : ""}></em>)}</span>
+    <small>{t.deBadge}</small>
+  </div>
+</div>

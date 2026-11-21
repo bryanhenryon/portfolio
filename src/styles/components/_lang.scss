@@ -1,0 +1,50 @@
+@use "../abstracts" as *;
+
+// FR / EN toggle in the nav.
+$option-width: 38px;
+
+.lang {
+  position: relative;
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 99px;
+  background: ink(0.07);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+
+  span {
+    position: relative;
+    z-index: 1;
+    width: $option-width;
+    padding: 0.42rem 0;
+    text-align: center;
+    color: var(--ink-soft);
+    transition: color 0.3s;
+  }
+
+  &__knob {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: $option-width;
+    border-radius: 99px;
+    background: #fff;
+    box-shadow: 0 4px 12px -4px ink(0.35);
+    transition: transform 0.55s var(--spring), background 0.3s;
+  }
+
+  &:hover &__knob {
+    background: var(--p-yellow);
+  }
+}
+
+html[lang="fr"] .lang span[data-l="fr"],
+html[lang="en"] .lang span[data-l="en"] {
+  color: var(--ink);
+}
+
+html[lang="en"] .lang__knob {
+  transform: translateX($option-width);
+}

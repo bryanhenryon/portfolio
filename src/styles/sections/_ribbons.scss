@@ -1,0 +1,55 @@
+@use "../abstracts" as *;
+
+// Two crossed scrolling marquees.
+.ribbons {
+  position: relative;
+  height: clamp(170px, 20vw, 240px);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.ribbon {
+  position: absolute;
+  left: -5%;
+  width: 110%;
+  padding: 1rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+  box-shadow: 0 16px 30px -18px ink(0.35);
+
+  &--a {
+    background: var(--grad-btn);
+    background-size: 200% 100%;
+    color: #fff;
+    transform: rotate(-4deg);
+    z-index: 2;
+
+    @include below(md) { transform: translateY(-34px) rotate(-4deg); }
+  }
+
+  // On narrow screens the 7° between the ribbons isn't enough to separate them,
+  // so they're pulled apart vertically and only overlap at the left edge.
+  &--b {
+    background: var(--yellow);
+    transform: rotate(3deg);
+
+    @include below(md) { transform: translateY(34px) rotate(3deg); }
+  }
+
+  &__track {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.8rem;
+    padding-right: 1.8rem;
+    font-weight: 800;
+    font-size: clamp(1.4rem, 3.2vw, 2.5rem);
+    letter-spacing: -0.03em;
+    will-change: transform;
+
+    i {
+      font-style: normal;
+      font-size: 0.7em;
+    }
+  }
+}

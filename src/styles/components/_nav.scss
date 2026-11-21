@@ -1,0 +1,103 @@
+@use "../abstracts" as *;
+
+// Imported after _buttons.scss: .nav__cta is also a .btn, and hiding it on
+// small screens relies on coming later in the cascade.
+
+.nav {
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  z-index: 100;
+  width: min(1100px, calc(100% - 24px));
+  transform: translateX(-50%);
+  transition: transform 0.6s var(--ease-out);
+
+  &.is-hidden {
+    transform: translate(-50%, -150%);
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 8px 8px 8px 18px;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.62);
+    backdrop-filter: blur(18px) saturate(1.8);
+    -webkit-backdrop-filter: blur(18px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 40px -12px ink(0.18);
+
+    @include below(sm) { padding-left: 14px; }
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+
+    b { font-weight: 800; }
+
+    @include below(sm) { font-size: 1rem; }
+  }
+
+  &__logo-blob {
+    @include size(26px);
+    background: conic-gradient(from var(--a), var(--pink), var(--orange), var(--yellow), var(--mint), var(--blue), var(--violet), var(--pink));
+    animation: spinA 6s linear infinite, morph 8s ease-in-out infinite;
+  }
+
+  &__links {
+    position: relative;
+    display: flex;
+    gap: 2px;
+
+    a {
+      position: relative;
+      z-index: 1;
+      padding: 0.55rem 1.05rem;
+      border-radius: 99px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      transition: color 0.3s;
+
+      &:hover,
+      &.is-active {
+        color: var(--ink);
+      }
+    }
+
+    @include below(md) { display: none; }
+  }
+
+  // Highlight that slides under the active link.
+  &__pill {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 99px;
+    background: var(--p-pink);
+    opacity: 0;
+    transition:
+      transform 0.6s var(--spring),
+      width 0.6s var(--spring),
+      background 0.4s,
+      opacity 0.3s;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__cta {
+    @include below(sm) { display: none; }
+  }
+}

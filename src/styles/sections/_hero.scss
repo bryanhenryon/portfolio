@@ -1,0 +1,450 @@
+@use "sass:list";
+@use "../abstracts" as *;
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 130px 0 90px;
+  overflow: hidden;
+
+  @include below(md) {
+    padding-bottom: 260px;
+    align-items: flex-start;
+  }
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  &__shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+  }
+
+  // "Salut 👋" pill above the title
+  &__hi {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 0.9rem 0.45rem 0.55rem;
+    margin-bottom: 1.6rem;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 24px -12px ink(0.25);
+    font-size: 0.95rem;
+  }
+
+  &__hi-dot {
+    position: relative;
+    @include circle(22px);
+    flex-shrink: 0; // stays round when the pill's text wraps on narrow screens
+    background: var(--grad);
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border-radius: 50%;
+      background: #fff;
+    }
+  }
+
+  &__title {
+    font-weight: 800;
+    font-size: clamp(2.7rem, 8.2vw, 8rem);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    font-variation-settings: "opsz" 96;
+
+    .grad-text {
+      font-size: 1.08em;
+      line-height: 0.8;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 520px;
+    margin-top: 2.2rem;
+  }
+
+  &__lead {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+  }
+
+  &__ctas {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+
+    .btn {
+      @include below(sm) { flex: 1; }
+    }
+  }
+
+  &__hint {
+    // sits just below-left of the "sur mesure" star (data-x .88 / data-y .7), the ↗ points at it
+    position: absolute;
+    right: calc(12% + 64px);
+    top: calc(70% + 22px);
+    z-index: 2;
+    white-space: nowrap;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--ink-soft);
+    // stickers are only throwable with a mouse/trackpad
+    display: none;
+
+    @include fine-pointer { display: block; }
+    @include below(md) { display: none; }
+  }
+}
+
+// ---------- background blobs ----------
+.blob {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  @include circle(55vmax);
+  background: radial-gradient(circle, var(--c) 0%, transparent 62%);
+  opacity: 0.55;
+  animation: drift var(--d, 18s) ease-in-out infinite alternate;
+  will-change: transform;
+
+  // follows the pointer (scripts/hero.ts)
+  &--mouse {
+    left: 0;
+    top: 0;
+    @include size(34vmax);
+    margin: -17vmax 0 0 -17vmax;
+    --c: #b28cff;
+    opacity: 0.45;
+    animation: none;
+  }
+}
+
+@keyframes drift {
+  to { transform: translate(var(--tx), var(--ty)) scale(1.15); }
+}
+
+// ---------- floating 3D shapes ----------
+.shape {
+  position: absolute;
+  will-change: transform;
+
+  &--cube {
+    top: 15%;
+    right: 13%;
+
+    @include below(md) { display: none; }
+  }
+
+  &--sphere {
+    bottom: 9%;
+    left: 44%;
+
+    @include below(md) { display: none; }
+  }
+
+  &--ring {
+    top: 12%;
+    right: 36%;
+
+    @include below(md) {
+      top: auto;
+      bottom: 150px;
+      left: 42%;
+    }
+  }
+}
+
+// Face rotation + gradient, in DOM order (front face needs no rotation).
+$cube-faces: (
+  (null, #ff8fc4, #ffb36b),
+  (rotateY(180deg), #8fb0ff, #b28cff),
+  (rotateY(90deg), #ffe066, #ffb36b),
+  (rotateY(-90deg), #7fe8c6, #8fb0ff),
+  (rotateX(90deg), #b28cff, #ff8fc4),
+  (rotateX(-90deg), #d9f77f, #7fe8c6),
+);
+$cube-size: 104px;
+
+.cube {
+  @include size($cube-size);
+  position: relative;
+  transform-style: preserve-3d;
+  animation: cubeSpin 16s linear infinite;
+
+  i {
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    opacity: 0.95;
+
+    @for $i from 1 through list.length($cube-faces) {
+      $face: list.nth($cube-faces, $i);
+      $rotation: list.nth($face, 1);
+      $from: list.nth($face, 2);
+      $to: list.nth($face, 3);
+
+      &:nth-child(#{$i}) {
+        transform: $rotation translateZ($cube-size * 0.5);
+        background: linear-gradient(135deg, $from, $to);
+      }
+    }
+  }
+}
+
+@keyframes cubeSpin {
+  from { transform: rotateX(-24deg) rotateY(0); }
+  to { transform: rotateX(336deg) rotateY(720deg); }
+}
+
+.sphere {
+  @include circle(92px);
+  background: radial-gradient(circle at 32% 28%, #fff 0%, #ffc2de 14%, var(--pink) 48%, #c4126f 100%);
+  box-shadow: 0 30px 40px -18px rgba(255, 79, 163, 0.55);
+  animation: bob 6s ease-in-out infinite;
+}
+
+.ring {
+  @include circle(120px);
+  background: conic-gradient(from var(--a), var(--blue), var(--violet), var(--pink), var(--orange), var(--yellow), var(--mint), var(--blue));
+  -webkit-mask: radial-gradient(circle, transparent 52%, #000 53%);
+  mask: radial-gradient(circle, transparent 52%, #000 53%);
+  animation: spinA 5s linear infinite, bob 7s ease-in-out infinite reverse;
+
+  @include below(md) { @include size(80px); }
+}
+
+// ---------- title decorations ----------
+.wave-hand {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: wave 2.4s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 60%, 100% { transform: rotate(0); }
+  10%, 30% { transform: rotate(16deg); }
+  20%, 40% { transform: rotate(-8deg); }
+}
+
+// Pill-shaped chips inlined in the title.
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 0.74em;
+  width: 1.45em;
+  border-radius: 99px;
+  vertical-align: -0.04em;
+
+  .w__in & {
+    transform: scale(0);
+    transition: transform 0.9s var(--spring);
+    transition-delay: calc(var(--i, 0) * 0.055s + var(--base, 0s) + 0.3s);
+  }
+
+  .is-split-in .w__in & {
+    transform: scale(1);
+  }
+
+  &--spin {
+    background: var(--grad-cool);
+    box-shadow: inset 0 -6px 12px rgba(0, 0, 0, 0.12);
+
+    svg {
+      @include size(0.42em);
+      animation: spin 5s linear infinite;
+    }
+  }
+
+  &--toggle {
+    position: relative;
+    animation: toggleBg 3.2s var(--ease-io) infinite;
+    padding: 0 0.08em;
+    justify-content: flex-start;
+
+    i {
+      @include circle(0.56em);
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+      animation: toggleKnob 3.2s var(--ease-io) infinite;
+    }
+  }
+}
+
+@keyframes toggleBg {
+  0%, 40% { background: #e4dff0; }
+  50%, 90% { background: var(--mint); }
+  100% { background: #e4dff0; }
+}
+
+@keyframes toggleKnob {
+  0%, 40% { transform: translateX(0); }
+  50%, 90% { transform: translateX(0.73em); }
+  100% { transform: translateX(0); }
+}
+
+// ---------- draggable stickers ----------
+.stickers {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.sticker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  padding: 0.7rem 1.2rem;
+  border-radius: 16px;
+  border: 3px solid #fff;
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.1;
+  text-align: center;
+  white-space: nowrap;
+  // Touch screens: purely decorative, touches go through so the page scrolls.
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  box-shadow: 0 12px 26px -10px ink(0.35);
+  opacity: 0;
+  will-change: transform;
+  transition: box-shadow 0.25s, opacity 0.4s;
+
+  @include below(md) { font-size: 0.95rem; }
+
+  // Draggable with a mouse/trackpad only (scripts/hero.ts).
+  @include fine-pointer {
+    pointer-events: auto;
+    touch-action: none;
+    cursor: grab;
+  }
+
+  &.is-placed {
+    opacity: 1;
+  }
+
+  &.is-dragging {
+    cursor: grabbing;
+    box-shadow: 0 26px 40px -14px ink(0.45);
+  }
+
+  &--blue {
+    background: var(--blue);
+    color: #fff;
+  }
+
+  &--pink {
+    background: var(--pink);
+    color: #fff;
+  }
+
+  &--lime {
+    background: var(--lime);
+
+    @include below(md) { display: none; }
+  }
+
+  &--circle {
+    @include size(104px);
+    padding: 0;
+    border-radius: 50%;
+    background: var(--yellow);
+  }
+
+  &--star {
+    @include size(124px);
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    filter: drop-shadow(0 12px 14px ink(0.28));
+
+    svg {
+      position: absolute;
+      inset: 0;
+      @include size(100%);
+      fill: var(--mint);
+      stroke: #fff;
+      stroke-width: 3;
+      animation: spin 18s linear infinite;
+    }
+
+    span {
+      position: relative;
+      font-size: 0.95rem;
+    }
+
+    &.is-dragging {
+      box-shadow: none;
+    }
+  }
+}
+
+// ---------- rotating badge (bottom right) ----------
+.badge {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 32px;
+  z-index: 4;
+  @include size(128px);
+  display: grid;
+  place-items: center;
+
+  @include below(md) { display: none; }
+
+  &__text {
+    position: absolute;
+    inset: 0;
+    @include size(100%);
+    will-change: transform;
+
+    text {
+      font-family: var(--font-mono);
+      font-size: 15.5px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      fill: var(--ink);
+    }
+  }
+
+  &__center {
+    @include circle(62px);
+    display: grid;
+    place-items: center;
+    font-size: 1.4rem;
+    color: #fff;
+    background: var(--grad-btn);
+    background-size: 200% 100%;
+    box-shadow: 0 10px 24px -8px rgba(255, 79, 163, 0.6);
+    transition: transform 0.5s var(--spring);
+  }
+
+  &:hover &__center {
+    transform: scale(1.12) rotate(-20deg);
+  }
+}

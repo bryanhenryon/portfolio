@@ -1,0 +1,86 @@
+@use "../abstracts" as *;
+
+// Custom cursor ring, shown only on devices with a mouse.
+@mixin ring-size($size) {
+  $offset: $size * -0.5;
+  @include size($size);
+  margin: $offset 0 0 $offset;
+}
+
+.cursor {
+  display: none;
+}
+
+@include fine-pointer {
+  body.has-cursor {
+    &,
+    a,
+    button,
+    .sticker {
+      cursor: none;
+    }
+  }
+
+  .cursor {
+    display: block;
+
+    &__dot,
+    &__ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 280;
+      pointer-events: none;
+      border-radius: 50%;
+      will-change: transform;
+    }
+
+    &__dot {
+      @include size(8px);
+      margin: -4px 0 0 -4px;
+      background: var(--pink);
+    }
+
+    &__ring {
+      @include ring-size(38px);
+      border: 1.5px solid ink(0.4);
+      display: grid;
+      place-items: center;
+      transition:
+        width 0.45s var(--spring),
+        height 0.45s var(--spring),
+        margin 0.45s var(--spring),
+        background 0.3s,
+        border-color 0.3s;
+    }
+
+    &__label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    &.is-hover .cursor__ring {
+      @include ring-size(60px);
+      border-color: var(--pink);
+      background: rgba(255, 79, 163, 0.08);
+    }
+
+    &.is-label {
+      .cursor__ring {
+        @include ring-size(86px);
+        border-color: transparent;
+        background: var(--grad-btn);
+        background-size: 200% 100%;
+      }
+      .cursor__label { opacity: 1; }
+      .cursor__dot { opacity: 0; }
+    }
+
+    &.is-hidden {
+      opacity: 0;
+    }
+  }
+}

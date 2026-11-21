@@ -1,0 +1,5 @@
+// Sass-only helpers: variables, functions and mixins.
+// Emits no CSS, so any partial can `@use "../abstracts" as *;` safely.
+@forward "variables";
+@forward "functions";
+@forward "mixins";

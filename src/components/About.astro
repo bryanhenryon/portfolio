@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+import type { Dictionary } from "../i18n";
+import Eyebrow from "./Eyebrow.astro";
+import photo from "../assets/bryan.webp";
+
+interface Props { t: Dictionary }
+const { t } = Astro.props;
+
+const orbit = [
+  { angle: "0deg", label: "⚛️ React" },
+  { angle: "90deg", label: "💚 Vue.js" },
+  { angle: "180deg", label: "🔷 TypeScript" },
+  { angle: "270deg", label: "🎨 Figma" },
+];
+
+/* prefix / suffix wrap the animated number */
+const stats = [
+  { bg: "var(--p-pink)", value: 7, prefix: "", suffix: "+", label: t.stat1 },
+  { bg: "var(--p-blue)", value: 30, prefix: "", suffix: "+", label: t.stat2 },
+  { bg: "var(--p-yellow)", value: 100, prefix: "", suffix: "%", label: t.stat3 },
+  { bg: "var(--p-mint)", value: 24, prefix: "<", suffix: "h", label: t.stat4 },
+];
+---
+<section id="about" class="section container about">
+  <div class="about__visual" data-reveal>
+    <div class="avatar">
+      <div class="avatar__photo">
+        <Image
+          src={photo}
+          alt="Bryan Henryon"
+          widths={[400, 700, 900]}
+          sizes="(max-width: 860px) 75vw, 360px"
+          quality={80}
+        />
+      </div>
+    </div>
+    <div class="orbit">
+      {orbit.map((o) => <span style={`--a:${o.angle}`}>{o.label}</span>)}
+    </div>
+  </div>
+
+  <div class="about__body">
+    <Eyebrow color="var(--mint)" html={t.aboutEyebrow} />
+    <p class="about__text" data-reveal set:html={t.aboutText} />
+
+    <div class="stats">
+      {stats.map((s) => (
+        <div class="stat" style={`--bgc:${s.bg}`} data-reveal>
+          <b>{s.prefix}<span data-count={s.value}>0</span>{s.suffix}</b>
+          <small>{s.label}</small>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

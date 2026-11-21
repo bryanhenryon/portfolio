@@ -1,0 +1,33 @@
+---
+/* Shared <head>: meta, icons, fonts and global styles.
+   Page-specific tags (SEO, social previews…) go in the default slot. */
+import { Font } from "astro:assets";
+import "../styles/main.scss";
+
+interface Props {
+  title: string;
+  description: string;
+  /** Keep the page out of search engines (e.g. the 404). */
+  noindex?: boolean;
+}
+const { title, description, noindex = false } = Astro.props;
+---
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="author" content="Bryan Henryon" />
+  <meta name="theme-color" content="#fdf8f3" />
+  {noindex && <meta name="robots" content="noindex" />}
+
+  <slot />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Self-hosted fonts (configured in astro.config.mjs); preload the main text font only -->
+  <Font cssVariable="--font-bricolage" preload />
+  <Font cssVariable="--font-instrument" />
+  <Font cssVariable="--font-dm-mono" />
+</head>

@@ -1,0 +1,36 @@
+@use "sass:map";
+@use "variables" as *;
+
+// Viewport at or below a named breakpoint: @include below(md) { … }
+@mixin below($name) {
+  @if not map.has-key($breakpoints, $name) {
+    @error "Unknown breakpoint `#{$name}`. Use one of: #{map.keys($breakpoints)}.";
+  }
+  @media (max-width: map.get($breakpoints, $name)) {
+    @content;
+  }
+}
+
+// Mouse/trackpad devices only (no touch).
+@mixin fine-pointer {
+  @media (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin circle($diameter) {
+  @include size($diameter);
+  border-radius: 50%;
+}
+
+// Paints the element's background through its text.
+@mixin clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

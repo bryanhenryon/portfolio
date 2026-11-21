@@ -1,0 +1,45 @@
+// Fixed overlays: scroll progress bar, confetti canvas, toast.
+
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 120;
+
+  span {
+    display: block;
+    height: 100%;
+    background: var(--grad-btn);
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+}
+
+.confetti {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 250;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 2rem;
+  z-index: 260;
+  padding: 0.85rem 1.4rem;
+  border-radius: 99px;
+  background: #fff;
+  box-shadow: var(--shadow);
+  font-weight: 600;
+  transform: translate(-50%, 160%);
+  transition: transform 0.6s var(--spring);
+
+  &.show {
+    transform: translate(-50%, 0);
+  }
+}

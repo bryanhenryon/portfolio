@@ -1,0 +1,68 @@
+---
+import type { Dictionary, Lang } from "../i18n";
+
+interface Props { t: Dictionary; lang: Lang }
+const { t, lang } = Astro.props;
+
+// The English title is wider: nudge the TypeScript sticker right so it doesn't cover it (desktop only).
+const tsNudge = lang === "en" ? 48 : undefined;
+
+const blobs = [
+  "--c:#ff7ab8;--x:-12%;--y:-18%;--tx:12vw;--ty:10vh;--d:16s",
+  "--c:#7aa2ff;--x:62%;--y:-20%;--tx:-10vw;--ty:16vh;--d:19s",
+  "--c:#ffd84f;--x:-10%;--y:55%;--tx:16vw;--ty:-12vh;--d:21s",
+  "--c:#5fe3b9;--x:65%;--y:55%;--tx:-14vw;--ty:-10vh;--d:17s",
+];
+---
+<section class="hero" id="top">
+  <div class="hero__bg" aria-hidden="true">
+    {blobs.map((style) => <span class="blob" style={style}></span>)}
+    <span class="blob blob--mouse" id="mouseBlob"></span>
+  </div>
+
+  <div class="hero__shapes" aria-hidden="true">
+    <div class="shape shape--cube" data-depth="40"><div class="cube"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    <div class="shape shape--sphere" data-depth="-28"><div class="sphere"></div></div>
+    <div class="shape shape--ring" data-depth="22"><div class="ring"></div></div>
+  </div>
+
+  <div class="container hero__content">
+    <div class="hero__hi fade-up" style="--d:.1s">
+      <span class="hero__hi-dot"></span>
+      <span set:html={t.heroHi} />
+      <span class="wave-hand">👋</span>
+    </div>
+
+    <h1 class="hero__title" style="--base:0.15s" data-split set:html={t.heroTitle} />
+
+    <div class="hero__bottom">
+      <p class="hero__lead fade-up" style="--d:.9s" set:html={t.heroLead} />
+      <div class="hero__ctas fade-up" style="--d:1.05s">
+        <a href="#work" class="btn btn--grad" data-magnetic><span>{t.heroCta1}</span><span class="btn__arrow">↓</span></a>
+        <a href="#contact" class="btn btn--outline" data-magnetic><span>{t.heroCta2}</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Throwable stickers: data-x / data-y = desktop position, data-mx / data-my = mobile (fractions of the hero),
+       optional data-dx = extra desktop offset in px -->
+  <div class="stickers" id="stickers">
+    <div class="sticker sticker--blue" data-x=".71" data-dx={tsNudge} data-y=".36" data-mx=".26" data-my=".83" data-r="-8" data-cursor={t.cDrag}>TypeScript</div>
+    <div class="sticker sticker--circle" data-x=".9" data-y=".46" data-mx=".8" data-my=".82" data-r="12" data-cursor={t.cDrag}>100%<br />remote</div>
+    <div class="sticker sticker--pink" data-x=".74" data-y=".6" data-mx=".42" data-my=".93" data-r="6" data-cursor={t.cDrag} set:html={t.stShips} />
+    <div class="sticker sticker--star" data-x=".88" data-y=".7" data-r="-14" data-cursor={t.cDrag}>
+      <svg viewBox="0 0 100 100"><path d="M50 2l11 18 20-6-2 21 19 9-15 15 9 19-21 3-4 21-18-11-18 11-4-21-21-3 9-19L2 44l19-9-2-21 20 6z"/></svg>
+      <span set:html={t.stClean} />
+    </div>
+    <div class="sticker sticker--lime" data-x=".6" data-y=".84" data-r="9" data-cursor={t.cDrag} set:html={t.stPixel} />
+  </div>
+  <p class="hero__hint fade-up" style="--d:1.6s" set:html={t.heroHint} />
+
+  <a href="#work" class="badge" data-magnetic aria-label={t.badgeLabel}>
+    <svg class="badge__text" viewBox="0 0 200 200" aria-hidden="true">
+      <defs><path id="circlePath" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0" /></defs>
+      <text><textPath href="#circlePath" set:html={t.badgeText} /></text>
+    </svg>
+    <span class="badge__center">↓</span>
+  </a>
+</section>

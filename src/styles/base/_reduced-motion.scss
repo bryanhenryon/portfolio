@@ -1,0 +1,37 @@
+// Must stay the last partial imported: it overrides every component.
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+
+  [data-reveal],
+  .fade-up {
+    opacity: 1;
+    transform: none;
+  }
+
+  .w__in,
+  .w__in .chip {
+    transform: none;
+  }
+
+  .term__l,
+  .bubble {
+    clip-path: none;
+    opacity: 1;
+  }
+
+  .tstep__card {
+    opacity: 1;
+    transform: none;
+  }
+}

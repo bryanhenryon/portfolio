@@ -1,0 +1,53 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import { legal } from "../data/legal";
+
+const updated = new Date(legal.updated).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+---
+<PageLayout lang="fr" title="Mentions légales" description="Mentions légales et politique de confidentialité du site bryanhenryon.com." altPath="/en/legal-notice/">
+  <h2>Éditeur du site</h2>
+  <p>
+    Directeur de la publication : {legal.name}.<br />
+    Téléphone : {legal.phone}<br />
+    E-mail : <a href={`mailto:${legal.email}`}>{legal.email}</a>
+  </p>
+
+  <h2>Hébergement</h2>
+  <p>
+    <strong>{legal.host.name}</strong><br />
+    {legal.host.address}<br />
+    Téléphone : {legal.host.phone}<br />
+    <a href={legal.host.url} rel="noopener">{legal.host.url.replace("https://", "")}</a>
+  </p>
+
+  <h2>Propriété intellectuelle</h2>
+  <p>
+    L'ensemble des contenus de ce site (textes, photographies, visuels, logo) est la propriété de {legal.name},
+    sauf mention contraire. Toute reproduction, même partielle, est interdite sans autorisation préalable.
+  </p>
+  <p>
+    Les polices Bricolage Grotesque, Instrument Serif et DM Mono sont distribuées sous licence <a href="https://openfontlicense.org" rel="noopener">SIL Open Font License</a>.
+  </p>
+
+  <h2>Données personnelles et cookies</h2>
+  <p>
+    Ce site ne dépose <strong>aucun cookie de suivi</strong> et n'utilise <strong>aucun outil de mesure d'audience</strong>.
+    Il ne contient pas de formulaire : aucune donnée n'est collectée lors de votre visite.
+  </p>
+  <p>
+    Si vous me contactez par e-mail ou par WhatsApp, les informations que vous me transmettez (nom, coordonnées,
+    contenu du message) sont utilisées uniquement pour vous répondre et assurer le suivi de nos échanges.
+    Elles ne sont jamais vendues ni transmises à des tiers, et sont conservées le temps nécessaire à notre relation.
+  </p>
+  <p>
+    Pour acheminer et sécuriser le site, l'hébergeur ({legal.host.name}) traite des données techniques
+    telles que votre adresse IP.
+  </p>
+  <p>
+    Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et d'effacement de vos données.
+    Pour l'exercer, écrivez à <a href={`mailto:${legal.email}`}>{legal.email}</a>. Vous pouvez également
+    adresser une réclamation à la <a href="https://www.cnil.fr" rel="noopener">CNIL</a>.
+  </p>
+
+  <p class="prose__updated">Dernière mise à jour : {updated}.</p>
+</PageLayout>

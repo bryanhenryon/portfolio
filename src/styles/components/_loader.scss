@@ -1,0 +1,53 @@
+@use "sass:list";
+
+// Colour of each sliding column, left to right.
+$loader-colors: #ff8fc4, #ffb36b, #ffe066, #7fe8c6, #8fb0ff;
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+
+  &__cols {
+    position: absolute;
+    inset: 0;
+    display: flex;
+
+    span {
+      flex: 1;
+      margin-right: -1px;
+      transition: transform 1s var(--ease-io);
+
+      @for $i from 1 through list.length($loader-colors) {
+        &:nth-child(#{$i}) {
+          background: list.nth($loader-colors, $i);
+          transition-delay: ($i - 1) * 0.06s;
+        }
+      }
+    }
+  }
+
+  &__word {
+    position: relative;
+    font-weight: 800;
+    font-size: clamp(3rem, 11vw, 8rem);
+    letter-spacing: -0.05em;
+    transition: opacity 0.4s, transform 0.6s var(--ease-io);
+
+    &::after {
+      content: ".";
+      color: #fff;
+    }
+  }
+}
+
+body.loaded {
+  .loader { pointer-events: none; }
+  .loader__cols span { transform: translateY(-101%); }
+  .loader__word {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+}

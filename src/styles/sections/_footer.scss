@@ -1,0 +1,50 @@
+@use "../abstracts" as *;
+
+.footer {
+  overflow: hidden;
+
+  &__row {
+    // Above the giant letters: they're transformed (so painted on top) and their
+    // hover area overflows upwards, which made the links here unclickable.
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  &__top:hover,
+  &__legal:hover {
+    color: var(--pink);
+  }
+
+  // Huge gradient name; each letter shows its own slice of the gradient.
+  &__giant {
+    font-weight: 800;
+    font-size: 21vw;
+    line-height: 0.78;
+    letter-spacing: -0.07em;
+    text-align: center;
+    white-space: nowrap;
+    margin-top: 1.5rem;
+    transform: translateY(14%);
+    user-select: none;
+
+    span {
+      display: inline-block;
+      background: var(--grad);
+      background-size: 900% 100%;
+      background-position: calc(var(--i) * 12.5%) 0;
+      @include clip-text;
+      transition: transform 0.6s var(--spring);
+
+      &:hover {
+        transform: translateY(-12%) rotate(-6deg);
+      }
+    }
+  }
+}

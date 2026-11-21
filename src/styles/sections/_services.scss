@@ -1,0 +1,385 @@
+@use "sass:list";
+@use "../abstracts" as *;
+
+// =========================================================
+// SERVICES: bento grid
+// =========================================================
+
+// Tile name → (desktop column span, pastel background, hover shadow colour).
+$tiles: (
+  web: (4, var(--p-blue), rgba(77, 124, 255, 0.5)),
+  api: (2, var(--p-pink), rgba(255, 79, 163, 0.45)),
+  cloud: (2, var(--p-yellow), rgba(255, 170, 40, 0.45)),
+  perf: (2, var(--p-mint), rgba(47, 214, 165, 0.45)),
+  consult: (2, var(--p-violet), rgba(139, 92, 246, 0.45)),
+);
+
+.bento {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.25rem;
+
+  @include below(lg) { grid-template-columns: repeat(2, 1fr); }
+  @include below(md) { grid-template-columns: 1fr; }
+}
+
+.tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 360px;
+  padding: 1.75rem;
+  border-radius: 30px;
+  background: var(--bgc);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+
+  &.in {
+    transition: opacity 0.9s var(--ease-out), transform 0.5s var(--ease-out), box-shadow 0.5s;
+  }
+
+  &:hover {
+    box-shadow: 0 30px 60px -24px var(--sh);
+  }
+
+  @each $name, $tile in $tiles {
+    &--#{$name} {
+      grid-column: span list.nth($tile, 1);
+      --bgc: #{list.nth($tile, 2)};
+      --sh: #{list.nth($tile, 3)};
+    }
+  }
+
+  // Modifier selectors (not .tile itself) so these beat the spans above.
+  @include below(lg) {
+    &--api, &--cloud, &--perf, &--consult { grid-column: span 1; }
+    &--web { grid-column: span 2; }
+  }
+
+  @include below(md) {
+    &--web, &--api, &--cloud, &--perf, &--consult { grid-column: span 1; }
+  }
+
+  &__visual {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    min-height: 170px;
+    margin-bottom: 1.25rem;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  p {
+    color: var(--ink-soft);
+    margin-top: 0.4rem;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    @include circle(42px);
+    display: grid;
+    place-items: center;
+    background: #fff;
+    font-size: 1.1rem;
+    transition: transform 0.5s var(--spring), background 0.3s;
+  }
+
+  &:hover &__arrow {
+    transform: rotate(45deg) scale(1.1);
+    background: var(--yellow);
+  }
+}
+
+// ---------- mini browser (web tile) ----------
+// .mock-win is the same window frame, used by the project cards.
+.mini-browser,
+.mock-win {
+  width: 100%;
+  max-width: 560px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.mini-browser {
+  &__bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+
+    i {
+      @include circle(10px);
+      background: #ff8fc4;
+
+      &:nth-child(2) { background: #ffd23f; }
+      &:nth-child(3) { background: #7fe8c6; }
+    }
+
+    span {
+      margin-left: 10px;
+      padding: 2px 12px;
+      border-radius: 99px;
+      background: var(--bg);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+    }
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 12px;
+    padding: 12px;
+    height: 180px;
+
+    @include below(md) { height: 150px; }
+  }
+}
+
+.mb-side {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  span {
+    height: 10px;
+    border-radius: 6px;
+    background: var(--p-blue);
+
+    &:first-child {
+      background: var(--blue);
+      width: 70%;
+    }
+  }
+}
+
+.mb-main {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+}
+
+.mb-hero {
+  border-radius: 10px;
+  background: linear-gradient(110deg, #ff8fc4, #b28cff, #8fb0ff, #ff8fc4);
+  background-size: 300% 100%;
+  animation: gradShift 5s linear infinite;
+}
+
+.mb-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+
+  span {
+    border-radius: 10px;
+    background: linear-gradient(90deg, #eef1fb 25%, #dfe6ff 50%, #eef1fb 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s linear infinite;
+
+    &:nth-child(2) { animation-delay: 0.2s; }
+    &:nth-child(3) { animation-delay: 0.4s; }
+  }
+}
+
+@keyframes shimmer {
+  to { background-position: -200% 0; }
+}
+
+// ---------- terminal (api tile) ----------
+.term {
+  width: 100%;
+  padding: 1.1rem;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: var(--shadow);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.9;
+
+  b { font-weight: 500; }
+
+  // typed-out line
+  &__l {
+    white-space: nowrap;
+    overflow: hidden;
+    clip-path: inset(0 100% 0 0);
+    animation: type 6s steps(24) infinite;
+    animation-delay: calc(var(--i) * 0.7s);
+  }
+}
+
+@keyframes type {
+  0% { clip-path: inset(0 100% 0 0); }
+  12%, 80% { clip-path: inset(0 0 0 0); }
+  90%, 100% { clip-path: inset(0 100% 0 0); }
+}
+
+// ---------- pipeline (cloud tile) ----------
+.pipeline {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  &__node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+
+    span {
+      @include size(52px);
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: #fff;
+      box-shadow: var(--shadow);
+      font-size: 1.3rem;
+      animation: nodeOn 3s var(--ease-out) infinite;
+      animation-delay: calc(var(--i) * 0.8s);
+    }
+
+    small {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+    }
+  }
+
+  &__line {
+    flex: 1;
+    height: 4px;
+    margin: 0 6px 22px;
+    border-radius: 4px;
+    background: ink(0.1);
+    position: relative;
+    overflow: hidden;
+
+    i {
+      position: absolute;
+      top: 0;
+      left: -30%;
+      width: 30%;
+      height: 100%;
+      border-radius: 4px;
+      background: var(--orange);
+      animation: travel 1.6s var(--ease-io) infinite;
+    }
+  }
+}
+
+@keyframes nodeOn {
+  0%, 100% { transform: scale(1); background: #fff; }
+  15% { transform: scale(1.15); background: var(--yellow); }
+  30% { transform: scale(1); background: #fff; }
+}
+
+@keyframes travel {
+  to { left: 100%; }
+}
+
+// ---------- gauge (perf tile) ----------
+.gauge {
+  position: relative;
+  @include size(150px);
+
+  svg {
+    @include size(100%);
+    transform: rotate(-90deg);
+  }
+
+  circle {
+    fill: none;
+    stroke-width: 11;
+    stroke-linecap: round;
+  }
+
+  &__bg {
+    stroke: ink(0.08);
+  }
+
+  &__fg {
+    stroke: url(#gaugeGrad);
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset 2s var(--ease-out) 0.3s;
+
+    .tile.in & {
+      stroke-dashoffset: 2;
+    }
+  }
+
+  &__num {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    text-align: center;
+
+    span {
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    small {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--ink-soft);
+    }
+  }
+}
+
+// ---------- chat (consult tile) ----------
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+.bubble {
+  max-width: 85%;
+  padding: 0.6rem 0.95rem;
+  border-radius: 18px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  box-shadow: 0 8px 20px -12px ink(0.4);
+  animation: pop 6s var(--spring) infinite;
+  animation-delay: calc(var(--i) * 0.9s);
+  transform-origin: left bottom;
+  opacity: 0;
+
+  &--in {
+    background: #fff;
+    border-bottom-left-radius: 6px;
+    align-self: flex-start;
+  }
+
+  &--out {
+    background: var(--violet);
+    color: #fff;
+    border-bottom-right-radius: 6px;
+    align-self: flex-end;
+    transform-origin: right bottom;
+  }
+}
+
+@keyframes pop {
+  0% { opacity: 0; transform: scale(0.4) translateY(10px); }
+  8%, 82% { opacity: 1; transform: none; }
+  92%, 100% { opacity: 0; transform: scale(0.9); }
+}
