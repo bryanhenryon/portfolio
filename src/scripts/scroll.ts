@@ -45,8 +45,31 @@ export function reveals() {
 
 /** Work cards shrink and tilt as the next one slides over them. */
 export function stackCards() {
-  if (reduceMotion) return;
   const cards = $$(".pcard");
+
+  // A sticky card taller than the viewport would be covered before its bottom (and its
+  // button) is ever seen: pull its `top` up so it only sticks once it fully fits on screen.
+  function fit() {
+    const vh = document.documentElement.clientHeight;
+    cards.forEach((card) => {
+      card.style.top = "";
+      const base = parseFloat(getComputedStyle(card).top) || 0;
+      const room = vh - card.offsetHeight - 16;
+      if (room < base) card.style.top = `${room}px`;
+    });
+  }
+  let lastW = innerWidth;
+  addEventListener("resize", () => {
+    // ignore the height-only resizes mobile browsers fire when the URL bar slides
+    if (innerWidth === lastW) return;
+    lastW = innerWidth;
+    fit();
+  });
+  const ro = new ResizeObserver(fit);
+  cards.forEach((c) => ro.observe(c));
+  fit();
+
+  if (reduceMotion) return;
   function update() {
     cards.forEach((card, i) => {
       const next = cards[i + 1];
