@@ -60,6 +60,12 @@ export const en: Dictionary = {
   deDate: "12 March · Paris",
   deCta: "Register",
   deBadge: "Visitor",
+  p3Meta: "03 — Equipment rental",
+  p3Text: "The website of an IT equipment rental company for professionals: computers, tablets, kiosks, LED walls and VR headsets, delivered and set up for an event, a training session or a trade show.",
+  p3Tag: "🚚 Delivered the day before",
+  haKicker: "Short-term rental",
+  haTitle: "iPads, PCs, VR & LED walls",
+  haCta: "Get a quote",
 
   procEyebrow: "Process",
   procTitle: 'How we\'ll work <em class="grad-text">together</em>',

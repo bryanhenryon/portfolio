@@ -1,0 +1,41 @@
+---
+import type { Dictionary } from "../../i18n";
+
+interface Props { t: Dictionary }
+const { t } = Astro.props;
+
+const items = [
+  { icon: "laptop", qty: "×24" },
+  { icon: "tablet", qty: "×60" },
+  { icon: "vr", qty: "×8" },
+];
+---
+<div class="mock-rent">
+  <div class="mock-win">
+    <div class="mini-browser__bar"><i></i><i></i><i></i><span>handyamo.com</span></div>
+    <div class="mr-head">
+      <small>{t.haKicker}</small>
+      <b>{t.haTitle}</b>
+    </div>
+    <div class="mr-body">
+      <div class="mr-grid" aria-hidden="true">
+        {items.map((it) => (
+          <span class="mr-item">
+            <span class={`mr-ico mr-ico--${it.icon}`}></span>
+            <i></i>
+            <em>{it.qty}</em>
+          </span>
+        ))}
+      </div>
+      <b class="mr-btn">{t.haCta}</b>
+    </div>
+  </div>
+  <div class="mr-kiosk" aria-hidden="true">
+    <span class="mr-kiosk__screen">
+      <span class="mr-kiosk__check">✓</span>
+      <i></i><i></i>
+    </span>
+    <span class="mr-kiosk__pole"></span>
+    <span class="mr-kiosk__base"></span>
+  </div>
+</div>

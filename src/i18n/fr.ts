@@ -64,6 +64,12 @@ export const fr = {
   deDate: "12 mars · Paris",
   deCta: "S'inscrire",
   deBadge: "Visiteur",
+  p3Meta: "03 — Location de matériel",
+  p3Text: "Le site d'un loueur de matériel informatique pour les pros : ordinateurs, tablettes, bornes, murs LED et casques VR, livrés et installés pour un événement, une formation ou un salon.",
+  p3Tag: "🚚 Livré la veille",
+  haKicker: "Location courte durée",
+  haTitle: "iPad, PC, VR & murs LED",
+  haCta: "Demander un devis",
 
   procEyebrow: "Méthode",
   procTitle: 'Comment on va travailler <em class="grad-text">ensemble</em>',

@@ -9,7 +9,7 @@ export interface Project {
   /** Position / rotation of the floating tag over the visual */
   tagStyle: string;
   colors: [string, string];
-  visual: "stancer" | "digitevent";
+  visual: "stancer" | "digitevent" | "handyamo";
   href: string;
 }
 
@@ -33,5 +33,15 @@ export const projects: Project[] = [
     colors: ["#c4b8ff", "#9df0cb"],
     visual: "digitevent",
     href: "https://www.digitevent.com",
+  },
+  {
+    title: "Handyamo",
+    meta: "p3Meta",
+    text: "p3Text",
+    tag: "p3Tag",
+    tagStyle: "--r:5deg;top:4%;right:-2%",
+    colors: ["#ffd6a5", "#ffb3d6"],
+    visual: "handyamo",
+    href: "https://www.handyamo.com",
   },
 ];

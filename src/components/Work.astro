@@ -4,11 +4,12 @@ import { projects } from "../data/projects";
 import Eyebrow from "./Eyebrow.astro";
 import StancerMock from "./mocks/StancerMock.astro";
 import DigiteventMock from "./mocks/DigiteventMock.astro";
+import HandyamoMock from "./mocks/HandyamoMock.astro";
 
 interface Props { t: Dictionary }
 const { t } = Astro.props;
 
-const visuals = { stancer: StancerMock, digitevent: DigiteventMock };
+const visuals = { stancer: StancerMock, digitevent: DigiteventMock, handyamo: HandyamoMock };
 ---
 <section id="work" class="section container">
   <div class="section__head">
