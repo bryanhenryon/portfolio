@@ -21,9 +21,11 @@ export const en: Dictionary = {
   heroCta1: "See my work",
   heroCta2: "Start a project",
   heroHint: "psst… throw the stickers ↗",
-  stShips: "⚡ Ships fast",
+  stQuote: "Free<br />quote",
+  stTurnkey: "✨ Turnkey",
+  stShips: "⚡ Fast delivery",
   stClean: "custom<br />made",
-  stPixel: "Pixel ✦ perfect",
+  stSupport: "🛠️ Support included",
   badgeText: "available for work ✦ freelance ✦ ",
 
   svcEyebrow: "Services",

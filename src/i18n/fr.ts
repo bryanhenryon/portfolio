@@ -25,9 +25,11 @@ export const fr = {
   heroCta1: "Voir mes projets",
   heroCta2: "Démarrer un projet",
   heroHint: "psst… lancez les stickers ↗",
-  stShips: "⚡ Livre vite",
+  stQuote: "Devis<br />gratuit",
+  stTurnkey: "✨ Clé en main",
+  stShips: "⚡ Livraison rapide",
   stClean: "sur<br />mesure",
-  stPixel: "Au pixel ✦ près",
+  stSupport: "🛠️ Suivi inclus",
   badgeText: "dispo pour vos projets ✦ freelance ✦ ",
 
   svcEyebrow: "Services",
@@ -114,7 +116,7 @@ export const fr = {
   badgeLabel: "Voir les projets",
   techLabel: "Technologies",
   toast: "E-mail copié ! 🎉",
-  cDrag: "Attrape",
+  cDrag: "Attraper",
   cView: "Voir",
   cCopy: "Copier",
 };
