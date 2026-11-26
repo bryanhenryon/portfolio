@@ -16,12 +16,12 @@ export const fr = {
   navAbout: "À propos",
   navCta: "Discutons",
 
-  heroHi: "Bonjour, je suis <b>Bryan Henryon</b> — développeur web freelance",
+  heroHi: "Bonjour, je suis <b>Bryan Henryon</b>, développeur web freelance",
   heroTitle:
     'Je crée des <span class="chip chip--spin"><svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z" fill="#fff"/></svg></span><br />' +
     "sites qu'on<br />" +
     '<em class="grad-text">adore</em> utiliser <span class="chip chip--toggle"><i></i></span>',
-  heroLead: "Sites vitrines, boutiques en ligne, outils sur mesure : je crée des sites rapides, beaux sur mobile et simples à utiliser pour les commerçants et les petites entreprises — sans jargon et sans prise de tête.",
+  heroLead: "Sites vitrines, boutiques en ligne, outils sur mesure : je crée des sites rapides, beaux sur mobile et simples à utiliser pour les commerçants et les petites entreprises, sans jargon et sans prise de tête.",
   heroCta1: "Voir mes projets",
   heroCta2: "Démarrer un projet",
   heroHint: "psst… lancez les stickers ↗",
@@ -34,7 +34,7 @@ export const fr = {
 
   svcEyebrow: "Services",
   svcTitle: 'Ce que je peux <em class="grad-text">faire</em> pour vous',
-  svcSub: "De la première maquette à la mise en ligne — je m'occupe de tout pour que vous puissiez vous concentrer sur votre activité.",
+  svcSub: "De la première maquette à la mise en ligne, je m'occupe de tout pour que vous puissiez vous concentrer sur votre activité.",
   webUrl: "votre-boutique.fr",
   webTitle: "Sites &amp; boutiques en ligne",
   webText: "Site vitrine, boutique en ligne ou application sur mesure : rapide, beau sur mobile et facile à prendre en main, même sans être un pro de l'informatique.",
@@ -46,7 +46,7 @@ export const fr = {
   perfScore: "score vitesse",
   perfText: "Un site rapide retient vos visiteurs et aide à mieux apparaître sur Google.",
   chat1: "Le site peut être prêt vendredi ?",
-  chat2: "Oui — testé sur mobile ✓",
+  chat2: "Oui, testé sur mobile ✓",
   chat3: "🤩 génial",
   consultTitle: "Conseil",
   consultText: "Un avis franc sur votre projet, votre site actuel ou le choix des bons outils.",
@@ -91,7 +91,7 @@ export const fr = {
   aboutText:
     'Je suis un développeur qui soigne les <mark class="hl" style="--c:#ffe27a;--d:.2s">petits détails</mark> qui rendent un site agréable à utiliser. ' +
     'Après plusieurs années à développer des logiciels en équipe, je me suis lancé en <mark class="hl" style="--c:#ffb3d6;--d:.5s">indépendant</mark> pour travailler au plus près des personnes pour qui je construis. ' +
-    'Je crée des sites rapides, solides et faciles à faire évoluer — et je travaille comme un <mark class="hl" style="--c:#b8c8ff;--d:.8s">vrai partenaire</mark> : un seul interlocuteur, qui vous parle simplement, sans jargon.',
+    'Je crée des sites rapides, solides et faciles à faire évoluer, et je travaille comme un <mark class="hl" style="--c:#b8c8ff;--d:.8s">vrai partenaire</mark> : un seul interlocuteur, qui vous parle simplement, sans jargon.',
   stat1: "années d'expérience",
   stat2: "projets livrés",
   stat3: "d'engagement",
@@ -99,7 +99,7 @@ export const fr = {
 
   ctEyebrow: "Un projet en tête ?",
   ctTitle: 'Créons ensemble quelque chose d\'<em class="grad-text">incroyable</em>.',
-  ctSub: "Parlez-moi de votre idée — je réponds généralement sous 24 h.",
+  ctSub: "Parlez-moi de votre idée, je réponds généralement sous 24 h.",
   copy: "copier",
   ctSend: "Envoyer un e-mail",
   ctWhatsapp: "Ou écrivez-moi sur <b>WhatsApp</b>",

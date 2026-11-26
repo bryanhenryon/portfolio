@@ -12,12 +12,12 @@ export const en: Dictionary = {
   navAbout: "About",
   navCta: "Let's talk",
 
-  heroHi: "Hi, I'm <b>Bryan Henryon</b> — freelance web developer",
+  heroHi: "Hi, I'm <b>Bryan Henryon</b>, freelance web developer",
   heroTitle:
     'I build <span class="chip chip--spin"><svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z" fill="#fff"/></svg></span> websites<br />' +
     "that people<br />" +
     '<em class="grad-text">love</em> to use <span class="chip chip--toggle"><i></i></span>',
-  heroLead: "Business websites, online shops, custom tools: I build fast, mobile-friendly, easy-to-use websites for shop owners and small businesses — no jargon, no headaches.",
+  heroLead: "Business websites, online shops, custom tools: I build fast, mobile-friendly, easy-to-use websites for shop owners and small businesses. No jargon, no headaches.",
   heroCta1: "See my work",
   heroCta2: "Start a project",
   heroHint: "psst… throw the stickers ↗",
@@ -30,7 +30,7 @@ export const en: Dictionary = {
 
   svcEyebrow: "Services",
   svcTitle: 'What I can <em class="grad-text">do</em> for you',
-  svcSub: "From first sketch to launch — I cover the whole journey so you can focus on your business.",
+  svcSub: "From first sketch to launch, I cover the whole journey so you can focus on your business.",
   webUrl: "your-shop.com",
   webTitle: "Websites &amp; online shops",
   webText: "A business website, an online shop or a custom app: fast, great on mobile and easy to use, even if you're not a tech person.",
@@ -42,7 +42,7 @@ export const en: Dictionary = {
   perfScore: "speed score",
   perfText: "A fast website keeps visitors around and helps you show up on Google.",
   chat1: "Can the site be ready by Friday?",
-  chat2: "Yes — tested on mobile ✓",
+  chat2: "Yes, tested on mobile ✓",
   chat3: "🤩 amazing",
   consultTitle: "Advice",
   consultText: "Honest advice on your project, your current website or choosing the right tools.",
@@ -87,7 +87,7 @@ export const en: Dictionary = {
   aboutText:
     'I\'m a web developer who obsesses over the <mark class="hl" style="--c:#ffe27a;--d:.2s">little details</mark> that make a website feel effortless. ' +
     'After years building software in teams, I went <mark class="hl" style="--c:#ffb3d6;--d:.5s">independent</mark> to work closer to the people I build for. ' +
-    'I build websites that are fast, solid and easy to grow — and I work like a <mark class="hl" style="--c:#b8c8ff;--d:.8s">true partner</mark>: one point of contact who talks to you plainly, without the jargon.',
+    'I build websites that are fast, solid and easy to grow, and I work like a <mark class="hl" style="--c:#b8c8ff;--d:.8s">true partner</mark>: one point of contact who talks to you plainly, without the jargon.',
   stat1: "years of experience",
   stat2: "projects shipped",
   stat3: "commitment",
@@ -95,7 +95,7 @@ export const en: Dictionary = {
 
   ctEyebrow: "Got a project in mind?",
   ctTitle: 'Let\'s build something <em class="grad-text">awesome</em> together.',
-  ctSub: "Tell me about your idea — I usually reply within a day.",
+  ctSub: "Tell me about your idea. I usually reply within a day.",
   copy: "copy",
   ctSend: "Send an email",
   ctWhatsapp: "Or message me on <b>WhatsApp</b>",

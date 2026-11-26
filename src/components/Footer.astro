@@ -10,7 +10,7 @@ const year = new Date().getFullYear();
 <footer class="footer">
   <div class="container footer__row">
     <span>
-      © {year} Bryan Henryon — <span set:html={t.madeWith} /> · <a href={locales[lang].legalPath} class="footer__legal">{t.legal}</a>
+      © {year} Bryan Henryon · <span set:html={t.madeWith} /> · <a href={locales[lang].legalPath} class="footer__legal">{t.legal}</a>
     </span>
     <span>{t.localTime} · <LocalClock client:visible locale={locales[lang].timeLocale} /></span>
     <a href="#top" class="footer__top" data-magnetic>{t.backTop}</a>
