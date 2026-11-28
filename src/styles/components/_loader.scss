@@ -5,13 +5,7 @@ $loader-colors: #ff8fc4, #ffb36b, #ffe066, #7fe8c6, #8fb0ff;
 
 .loader {
   position: fixed;
-  // Not `inset: 0`: on iOS Safari that stops above the browser toolbar.
-  // The large viewport height also covers the area behind it.
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  height: 100lvh;
+  inset: 0;
   z-index: 300;
   display: grid;
   place-items: center;
